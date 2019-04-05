@@ -20,75 +20,86 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:background="@drawable/card_gradually2">
 
         <LinearLayout
             android:layout_width="@dimen/dp_100"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="今天饮茶"
-                android:textSize="@dimen/dp_20"
-                android:layout_weight="1"/>
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="3杯"
-                android:textSize="@dimen/dp_20"/>
 
-        </LinearLayout>
-        <View
-            android:layout_width="@dimen/dp_1"
-            android:background="@color/colorPrimaryDark"
-            android:layout_height="30dp"/>
-        <LinearLayout
-            android:layout_width="@dimen/dp_100"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
             <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="本周饮茶"
-                android:textSize="@dimen/dp_20"
-                android:layout_weight="1"/>
-            <TextView
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="3杯"
-                android:textSize="@dimen/dp_20"/>
+                android:gravity="center"
+                android:text="今日"
+                android:textSize="@dimen/dp_20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="打卡"
+                android:textSize="@dimen/dp_20" />
 
         </LinearLayout>
+
         <View
-            android:layout_width="@dimen/dp_1"
-            android:background="@color/colorPrimaryDark"
-            android:layout_height="30dp"/>
+            android:layout_width="@dimen/dp_2"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimaryDark" />
+
         <LinearLayout
             android:layout_width="@dimen/dp_100"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:text="本月饮茶"
-                android:textSize="@dimen/dp_20"
-                android:layout_weight="1"/>
-            <TextView
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="3杯"
-                android:textSize="@dimen/dp_20"/>
+                android:gravity="center"
+                android:text="今日"
+                android:textSize="@dimen/dp_20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="养生"
+                android:textSize="@dimen/dp_20" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/dp_2"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="体质"
+                android:textSize="@dimen/dp_20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="检测"
+                android:textSize="@dimen/dp_20" />
 
         </LinearLayout>
     </LinearLayout>
@@ -136,6 +147,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/cha_card"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/card_dian"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -148,7 +163,202 @@
                     android:layout_marginLeft="@dimen/dp_5"
                     android:background="@color/line"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_60"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:text="今天饮茶"
+                            android:textSize="@dimen/dp_20"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="3杯"
+                            android:textSize="@dimen/dp_20"/>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="@dimen/dp_1"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_height="30dp"/>
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:text="本周饮茶"
+                            android:textSize="@dimen/dp_20"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="3杯"
+                            android:textSize="@dimen/dp_20"/>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="@dimen/dp_1"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_height="30dp"/>
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:text="本月饮茶"
+                            android:textSize="@dimen/dp_20"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="3杯"
+                            android:textSize="@dimen/dp_20"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_100"
+            app:cardCornerRadius="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_10">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/card_gradually">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/card_shi"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/card_dian"
+                        android:layout_marginLeft="@dimen/dp_3"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="时辰"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_3"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:background="@color/line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_60"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:text="今天饮茶"
+                            android:textSize="@dimen/dp_20"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="3杯"
+                            android:textSize="@dimen/dp_20"/>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="@dimen/dp_1"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_height="30dp"/>
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:text="本周饮茶"
+                            android:textSize="@dimen/dp_20"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="3杯"
+                            android:textSize="@dimen/dp_20"/>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="@dimen/dp_1"
+                        android:background="@color/colorPrimaryDark"
+                        android:layout_height="30dp"/>
+                    <LinearLayout
+                        android:layout_width="@dimen/dp_100"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:text="本月饮茶"
+                            android:textSize="@dimen/dp_20"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="3杯"
+                            android:textSize="@dimen/dp_20"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
