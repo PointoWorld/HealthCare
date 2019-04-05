@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:centerColor="@color/takephoto_bg_centercolor"
+        android:endColor="@color/takephoto_bg_endcolor"
+        android:gradientRadius="300dp"
+        android:startColor="@color/takephoto_bg_centercolor"
+        android:type="radial" />
+
+</shape>

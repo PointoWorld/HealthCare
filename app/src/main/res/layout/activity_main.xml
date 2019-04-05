@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:suspend="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.MainActivity"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:suspend="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--android:background="@color/colorPrimaryDark"-->
+        <!--app:navigationIcon="@drawable/back_main">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/toolbar_main_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:singleLine="true"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="20sp" />-->
+
+    <!--</android.support.v7.widget.Toolbar>-->
+    <FrameLayout
+        android:id="@+id/realtabcontent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/bg_color">
+    </FrameLayout>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/bg_color"/>
+    <com.zxu.masterofpainting.widget.FragmentTabHost
+        android:id="@+id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+    </com.zxu.masterofpainting.widget.FragmentTabHost>
+
+</LinearLayout>
+
+    <com.laocaixw.layout.SuspendButtonLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        suspend:distance="300dp"
+        suspend:imageSize="50dp"
+        suspend:marginY="100dp"
+        suspend:number="2"
+        suspend:imageMainOpen="@mipmap/icon_circle"
+        suspend:imageMainClose="@mipmap/icon_pai"
+        suspend:image1="@mipmap/icon_chaye"
+        suspend:image2="@mipmap/icon_shicai"
+        suspend:image3="@mipmap/icon_touming"
+        />
+
+
+</RelativeLayout>

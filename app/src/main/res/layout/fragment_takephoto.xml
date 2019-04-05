@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryBack">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_150"
+        android:gravity="center">
+        <ImageView
+            android:src="@mipmap/icon_chaye"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="@dimen/dp_100" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="今天饮茶"
+                android:textSize="@dimen/dp_20"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="3杯"
+                android:textSize="@dimen/dp_20"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="30dp"/>
+        <LinearLayout
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="本周饮茶"
+                android:textSize="@dimen/dp_20"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="3杯"
+                android:textSize="@dimen/dp_20"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="@dimen/dp_1"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="30dp"/>
+        <LinearLayout
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="本月饮茶"
+                android:textSize="@dimen/dp_20"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="3杯"
+                android:textSize="@dimen/dp_20"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_300"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <View
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/dp_5"
+                android:layout_height="@dimen/dp_20"
+                android:background="@color/colorPrimaryDark"/>
+            <TextView
+                android:layout_marginLeft="@dimen/dp_5"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dp_17"
+                android:text="养生与记录"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

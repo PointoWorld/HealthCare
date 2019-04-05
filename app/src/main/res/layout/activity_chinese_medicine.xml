@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackGround"
+    tools:context=".HealthPreserve.ChineseMedicineActivity">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/chinese_simple_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        android:layout_marginBottom="@dimen/dp_5"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="@string/medicine"
+        android:gravity="center"
+        android:textSize="20dp"
+        />
+    <View android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/colorPrimaryDark"
+        />
+
+    <com.paulyung.laybellayout.LaybelLayout
+        android:id="@+id/medicine_laybel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        app:line_padding="5">
+
+    </com.paulyung.laybellayout.LaybelLayout>
+
+</LinearLayout>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackGround">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_physique"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:navigationIcon="@drawable/back">
+
+        <TextView
+            android:id="@+id/toolbar_physique_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:text="@string/myphysique"
+            android:textSize="20sp" />
+
+    </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:layout_width="190dp"
+            android:layout_height="130dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@mipmap/shuimo">
+
+            <TextView
+                android:id="@+id/physique_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:text="定义"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18dp"/>
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/bg_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="         由于元气不足，以气息低弱、机体、脏腑功能状态低下为主要特征的一种体质状态。"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="成因"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp"/>
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/bg_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="         先天本弱、后天失养或病后气亏、年老气衰、过度疲劳造成。"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="特征"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp"/>
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/bg_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="         肌肉不健壮。气短懒言，肢体容易疲乏，易出汗，舌体胖大、边有齿横，目光少神，唇色少华，易头晕健忘等。性格内向，情绪不稳定，胆小不敢冒险。容易感冒，而且难好易复发。不耐受寒邪、风邪、暑邪。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="调理"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp"/>
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/bg_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="         补中益气、固本培元，肾护、调脾、清肺补气"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="保健方法"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18dp"/>
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/bg_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="         生活起居：起居规律、避免熬夜或过度疲劳，要养成午休的习惯。
+            \n         精神调摄：乐观向上、多谈话沟通
+            \n         锻炼：避免剧烈运动，做柔缓运动，如散步、打太极拳等。
+            \n         饮食调养：山药、大枣、薯类等，少吃槟榔、空心菜、生萝卜等耗气的食物
+            \n         药膳推荐：山药粥，适量，可做早晚餐
+            \n         中成药：补中益气丸、参苓白术散等
+            \n         穴位调理：中脘、建里、气海、关元、足三里、肺腧、脾腧等，可艾灸。"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

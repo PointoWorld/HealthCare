@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ShowIngredientsActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CollocationDetailActivityTheme" parent="ShowIngredientsActivityTheme" >
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="CollocationActivityTheme" parent="ShowIngredientsActivityTheme"/>
+    <style name="CollectionActivityTheme" parent="ShowIngredientsActivityTheme"/>
+    <style name="LabelDetailActivityTheme" parent="ShowIngredientsActivityTheme"/>
+    <style name="TakephotoActivityTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+
+</resources>
