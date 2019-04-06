@@ -88,4 +88,8 @@ dependencies {
     //lablel
     implementation 'com.github.devlight:infinitecycleviewpager:1.0.2'
     implementation 'com.moxun:tagcloudlib:1.2.0'
+    //tags
+    implementation 'co.lujun:androidtagview:1.0.3'
+    //pao
+    implementation 'com.gongwen:marqueelibrary:1.1.3'
 }

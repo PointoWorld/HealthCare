@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:suspend="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryBack">
-
+    >
     <LinearLayout
         android:layout_marginTop="@dimen/dp_40"
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
         android:layout_height="@dimen/dp_60"
         android:gravity="center"
         android:orientation="horizontal"
+        android:layout_margin="@dimen/dp_10"
         android:background="@drawable/card_gradually2">
 
         <LinearLayout
@@ -119,7 +120,7 @@
                 android:layout_gravity="center"
                 android:layout_width="@dimen/dp_5"
                 android:layout_height="@dimen/dp_20"
-                android:background="@color/colorPrimaryDark"/>
+                android:background="@color/colorAccentText"/>
             <TextView
                 android:layout_marginLeft="@dimen/dp_5"
                 android:layout_gravity="center"
@@ -138,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="@drawable/card_gradually">
+                android:background="@drawable/card_gradually2">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -161,7 +162,7 @@
                     android:layout_height="@dimen/dp_1"
                     android:layout_marginTop="@dimen/dp_3"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:background="@color/line"/>
+                    android:background="@color/colorAccentText"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -252,7 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="@drawable/card_gradually">
+                android:background="@drawable/card_gradually2">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -279,13 +280,12 @@
                     android:layout_height="@dimen/dp_1"
                     android:layout_marginTop="@dimen/dp_3"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:background="@color/line"/>
+                    android:background="@color/colorAccentText"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_60"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="@dimen/dp_100"
@@ -295,64 +295,37 @@
                             android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:text="今天饮茶"
-                            android:textSize="@dimen/dp_20"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1"
+                            android:text="午时"
+                            android:textSize="@dimen/dp_20"/>
                         <TextView
                             android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:text="3杯"
+                            android:text="心经当令"
                             android:textSize="@dimen/dp_20"/>
 
                     </LinearLayout>
                     <View
                         android:layout_width="@dimen/dp_1"
                         android:background="@color/colorPrimaryDark"
-                        android:layout_height="30dp"/>
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"/>
                     <LinearLayout
-                        android:layout_width="@dimen/dp_100"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <com.gongwen.marqueen.SimpleMarqueeView
+                            android:id="@+id/simpleMarqueeView"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:text="本周饮茶"
-                            android:textSize="@dimen/dp_20"
-                            android:layout_weight="1"/>
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="3杯"
-                            android:textSize="@dimen/dp_20"/>
-
-                    </LinearLayout>
-                    <View
-                        android:layout_width="@dimen/dp_1"
-                        android:background="@color/colorPrimaryDark"
-                        android:layout_height="30dp"/>
-                    <LinearLayout
-                        android:layout_width="@dimen/dp_100"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:text="本月饮茶"
-                            android:textSize="@dimen/dp_20"
-                            android:layout_weight="1"/>
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="3杯"
-                            android:textSize="@dimen/dp_20"/>
+                            android:layout_height="match_parent"
+                            android:flipInterval="2500"
+                            android:inAnimation="@anim/in_right"
+                            android:outAnimation="@anim/out_left"
+                            app:marqueeAnimDuration="2000"
+                            app:smvTextEllipsize="end"
+                            app:smvTextSize="15sp"
+                            smvTextSingleLine="false"/>
 
                     </LinearLayout>
                 </LinearLayout>

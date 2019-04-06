@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="match_parent"
+<RelativeLayout
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:suspend="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.MainActivity"
@@ -14,25 +15,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-    <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar_main"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:minHeight="?attr/actionBarSize"-->
-        <!--android:background="@color/colorPrimaryDark"-->
-        <!--app:navigationIcon="@drawable/back_main">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/toolbar_main_title"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:singleLine="true"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="20sp" />-->
-
-    <!--</android.support.v7.widget.Toolbar>-->
     <FrameLayout
         android:id="@+id/realtabcontent"
         android:layout_width="match_parent"
@@ -40,8 +22,6 @@
         android:layout_weight="1"
         android:background="@color/bg_color">
     </FrameLayout>
-
-
 
     <View
         android:layout_width="match_parent"
@@ -61,12 +41,10 @@
     </com.zxu.masterofpainting.widget.FragmentTabHost>
 
 </LinearLayout>
-
-    <com.laocaixw.layout.SuspendButtonLayout
+<com.laocaixw.layout.SuspendButtonLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         suspend:distance="300dp"
         suspend:imageSize="50dp"
         suspend:marginY="100dp"

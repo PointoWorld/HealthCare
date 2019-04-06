@@ -1,10 +1,12 @@
 package com.zxu.masterofpainting.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.moxun.tagcloudlib.view.TagCloudView;
@@ -34,19 +36,22 @@ public class HorizontalPagerAdapter extends PagerAdapter {
         return POSITION_NONE;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
         final View view;
         view = mLayoutInflater.inflate(R.layout.item, container, false);
         TextView textTig = (TextView) view.findViewById(R.id.tag_title);
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.card_back);
         TagCloudView fragmentTagcloud = (TagCloudView) view.findViewById(R.id.fragment_tagcloud);
+        //fragmentTagcloud.setBackgroundColor(R.color.colorAccentLight);
+        //linearLayout.setBackgroundColor(R.color.colorAccentLight);
         textTig.setText(Constants.labelNameMenu[position]);
 
-        TextTagsAdapter adapter = new TextTagsAdapter(Constants.labelMenuContent[position]);
+        TextTagsAdapter adapter = new TextTagsAdapter(fragmentTagcloud,Constants.labelMenuContent[position]);
         fragmentTagcloud.setAdapter(adapter);
 
         container.addView(view);
-
         return view;
     }
 

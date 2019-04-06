@@ -1,11 +1,15 @@
 package com.zxu.masterofpainting.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -13,10 +17,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.moxun.tagcloudlib.view.TagCloudView;
 import com.moxun.tagcloudlib.view.TagsAdapter;
 import com.zxu.masterofpainting.Constants;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.activity.LabelDetailActivity;
+import com.zxu.masterofpainting.fragment.NurseFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,8 +35,10 @@ public class TextTagsAdapter extends TagsAdapter {
 
     private List<String> dataSet = new ArrayList<>();
     private String[] strings;
+    private TagCloudView view;
 
-    public TextTagsAdapter(String[] strings) {
+    public TextTagsAdapter(TagCloudView view, String[] strings) {
+        this.view = view;
         this.strings = strings;
         //Collections.addAll(dataSet, data);
     }
@@ -46,6 +54,7 @@ public class TextTagsAdapter extends TagsAdapter {
         tv.setText(strings[position]);
         tv.setGravity(Gravity.CENTER);
         tv.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 if (Constants.isSelected == 0) {
@@ -53,8 +62,10 @@ public class TextTagsAdapter extends TagsAdapter {
                     Intent intent = new Intent(context,LabelDetailActivity.class);
                     intent.putExtra("labelName", strings[position]);
                     context.startActivity(intent);
+
                 } else if (Constants.isSelected == 1) {
                     Constants.selectedLable.add(strings[position]);
+                    //view.setBackgroundColor(R.color.colorAccent);
                     Toast.makeText(context, strings[position]+"已添加！", Toast.LENGTH_SHORT).show();
                 }
             }

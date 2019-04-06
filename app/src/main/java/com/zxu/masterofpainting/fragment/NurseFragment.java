@@ -2,6 +2,7 @@ package com.zxu.masterofpainting.fragment;
 
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +32,11 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class NurseFragment extends Fragment{
+    private LinearLayout circleBack;
     private Button selectbtn;
     private Button zuhebtn;
     private Button nobtn;
+    public static String TAG = "nurseFragment";
 
 
     @Override
@@ -47,6 +51,7 @@ public class NurseFragment extends Fragment{
     }
 
     private void initView(View view) {
+        circleBack = (LinearLayout) view.findViewById(R.id.circle_back);
         selectbtn = (Button) view.findViewById(R.id.lable_select);
         selectbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +75,9 @@ public class NurseFragment extends Fragment{
         });
     }
 
+    @SuppressLint("ResourceAsColor")
     private void select(){
+        //circleBack.setBackgroundColor(getResources().getColor(R.color.colorAccentLight));
         Toast.makeText(getContext(), "开始选择", Toast.LENGTH_SHORT).show();
         Constants.isSelected = 1;
         Constants.selectedLable.clear();
@@ -78,11 +85,33 @@ public class NurseFragment extends Fragment{
     private void startZuHe(){
         Toast.makeText(getContext(), "组合了"+Constants.selectedLable.size()+"个元素", Toast.LENGTH_SHORT).show();
     }
+    @SuppressLint("ResourceAsColor")
     private void noSelect(){
+        //circleBack.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         Toast.makeText(getContext(), "取消组合成功！", Toast.LENGTH_SHORT).show();
         Constants.selectedLable.clear();
         Constants.isSelected = 0;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void loadData(){
 //        labelNameMenu = Constants.labelNameMenu;
