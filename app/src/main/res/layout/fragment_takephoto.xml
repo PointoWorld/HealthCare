@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     >
     <LinearLayout
-        android:layout_marginTop="@dimen/dp_40"
+
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_150"
+        android:layout_height="@dimen/dp_120"
         android:gravity="center">
         <ImageView
             android:src="@mipmap/icon_chaye"
@@ -222,20 +222,20 @@
                         android:layout_width="@dimen/dp_100"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:text="本月饮茶"
-                            android:textSize="@dimen/dp_20"
-                            android:layout_weight="1"/>
-                        <TextView
-                            android:gravity="center"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:text="3杯"
-                            android:textSize="@dimen/dp_20"/>
+                        <org.eazegraph.lib.charts.ValueLineChart
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/cubiclinechart"
+                            android:layout_width="@dimen/dp_110"
+                            android:layout_height="wrap_content"
+                            app:egUseCubic="true"
+                            app:egUseOverlapFill="true"
+                            app:egCurveSmoothness="0.4"
+                            app:egIndicatorLineColor="@color/colorPrimaryDark"
+                            app:egLegendHeight="16dp"
+                            app:egShowStandardValue="false"
+                            app:egIndicatorWidth="0dp"
+
+                            app:egLegendTextSize="@dimen/dp_10"/>
 
                     </LinearLayout>
                 </LinearLayout>

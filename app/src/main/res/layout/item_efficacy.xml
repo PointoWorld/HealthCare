@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:textSize="25dp"
-            android:textColor="@color/colorTitle"/>
+            android:textColor="@color/colorPrimaryDark"/>
 
         <View
             android:layout_width="match_parent"

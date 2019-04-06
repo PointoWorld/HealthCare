@@ -159,7 +159,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                     public void done(List<Tea> list, BmobException e) {
                         if (null == e && null != list) {
                             Intent intent = new Intent(TakePhotoActivity.this, ShowTeaActivity.class);
-                            intent.putExtra("result", "西湖龙井");
+                            intent.putExtra("result", "铁观音");
                             startActivity(intent);
                             spotsDialog.dismiss();
 //                            boolean yes = false;

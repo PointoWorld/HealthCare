@@ -60,8 +60,8 @@ public class ChongPaoFragment extends Fragment {
 
         // 通过URL方式的视频信息配置
         SuperPlayerModel model2 = new SuperPlayerModel();
-        model2.title  = "西湖龙井茶";
-        model2.videoURL = "https://vd3.bdstatic.com/mda-ii2pz7f1cks6kcjs/mda-ii2pz7f1cks6kcjs.mp4?playlist=%5B%22hd%22%2C%22sc%22%5D#";
+        model2.title  = Constants.teaName;
+        model2.videoURL = Constants.teachongPao;
         String s = "https://vd3.bdstatic.com/mda-iidkzcr3t2j7sa3v/mda-iidkzcr3t2j7sa3v.mp4?playlist=%5B%22hd%22%2C%22sc%22%5D&vt=1&cd=0&did=fe375095f7294e1718fe87a29be19d28&logid=1184924766&vid=9375042527669561062";
 
         // 开始播放

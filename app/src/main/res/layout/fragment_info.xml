@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryBack"
-    tools:context=".fragment.InfoFragment">
+    tools:context=".fragment.InfoFragment"
+    >
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/slider"

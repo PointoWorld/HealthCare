@@ -34,6 +34,10 @@ import com.zxu.masterofpainting.activity.PhysiqueActivity;
 import com.zxu.masterofpainting.activity.ShowIngredientsActivity;
 import com.zxu.masterofpainting.activity.TakePhotoActivity;
 
+import org.eazegraph.lib.charts.ValueLineChart;
+import org.eazegraph.lib.models.ValueLinePoint;
+import org.eazegraph.lib.models.ValueLineSeries;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,6 +59,11 @@ public class TakePhotoFragment extends Fragment {
     private ImageView picture_Distinguish;
     private Uri imageUri;
     private SuspendButtonLayout suspendButtonLayout;
+    SimpleMarqueeView<String> marqueeView;
+    ValueLineChart mCubicValueLineChart;
+    ValueLineSeries series;
+    SimpleMF<String> marqueeFactory;
+    List<String> datas;
 
 
     @Nullable
@@ -63,17 +72,32 @@ public class TakePhotoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_takephoto,container,false);
         iniview(view);
+
         return view;
     }
 
     public void iniview(View view){
-        final List<String> datas = Arrays.asList("中午不吃饭会心慌哦！","吃饱后短暂午睡可以让身体气血充足。");
-//SimpleMarqueeView<T>，SimpleMF<T>：泛型T指定其填充的数据类型，比如String，Spanned等
-        SimpleMarqueeView<String> marqueeView = (SimpleMarqueeView) view.findViewById(R.id.simpleMarqueeView);
-        SimpleMF<String> marqueeFactory = new SimpleMF(getContext());
+        mCubicValueLineChart = (ValueLineChart) view.findViewById(R.id.cubiclinechart);
+        datas = Arrays.asList("中午不吃饭会心慌哦！","吃饱后短暂午睡可以让身体气血充足。");
+        //SimpleMarqueeView<T>，SimpleMF<T>：泛型T指定其填充的数据类型，比如String，Spanned等
+        marqueeView = (SimpleMarqueeView) view.findViewById(R.id.simpleMarqueeView);
+        marqueeFactory = new SimpleMF(getContext());
         marqueeFactory.setData(datas);
         marqueeView.setMarqueeFactory(marqueeFactory);
         marqueeView.startFlipping();
+
+
+        series = new ValueLineSeries();
+        series.setColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        series.addPoint(new ValueLinePoint("6号", 2.5f));
+        series.addPoint(new ValueLinePoint("7号", 1.5f));
+        series.addPoint(new ValueLinePoint("8号", 1.5f));
+        series.addPoint(new ValueLinePoint("9号", 3.5f));
+        series.addPoint(new ValueLinePoint("10号", 5.5f));
+
+        mCubicValueLineChart.addSeries(series);
+        mCubicValueLineChart.startAnimation();
     }
 
 }
