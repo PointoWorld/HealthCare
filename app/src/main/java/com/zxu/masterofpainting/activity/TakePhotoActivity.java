@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.baidu.aip.imageclassify.AipImageClassify;
 import com.flurgle.camerakit.CameraKit;
 import com.flurgle.camerakit.CameraListener;
@@ -27,6 +28,10 @@ import com.zxu.masterofpainting.Cha.ShowTeaActivity;
 import com.zxu.masterofpainting.Cha.Tea;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.bean.Ingredients;
+import com.zxu.masterofpainting.utils.GsonUtils;
+import com.zxu.masterofpainting.utils.HttpUtil;
+import com.zxu.masterofpainting.utils.MyUtil;
+import com.zxu.masterofpainting.utils.Base64Util;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +39,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,26 +90,56 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
             public void onPictureTaken(final byte[] jpeg) {
                 super.onPictureTaken(jpeg);
 
-                final AipImageClassify client = new AipImageClassify("15847958", "pyReKYGYKrDX1Zf1ISAm3rpC", "hiSnw9qYoI1fMasUC2RlIwNGyEhVteQm");
-                client.setConnectionTimeoutInMillis(2000);
-                client.setSocketTimeoutInMillis(60000);
                 spotsDialog = new SpotsDialog(TakePhotoActivity.this,"正在识别中...");
                 spotsDialog.show();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        JSONObject res = client.plantDetect(jpeg, new HashMap<String, String>());
-                        try {
-                            String result = res.getJSONArray("result").getJSONObject(0).getString("name");
-                            handler.post(new UIRunable(result));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                if (cameraId.equals("ingredients")) {
+                    final AipImageClassify client = new AipImageClassify("15847958", "pyReKYGYKrDX1Zf1ISAm3rpC", "hiSnw9qYoI1fMasUC2RlIwNGyEhVteQm");
+                    client.setConnectionTimeoutInMillis(2000);
+                    client.setSocketTimeoutInMillis(60000);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            JSONObject res = client.plantDetect(jpeg, new HashMap<String, String>());
+                            try {
+                                String result = res.getJSONArray("result").getJSONObject(0).getString("name");
+                                handler.post(new UIRunable(result));
+                                //spotsDialog.dismiss();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
-                        //Toast.makeText(MainActivity.this, res.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }).start();
-            }
+                            //Toast.makeText(MainActivity.this, res.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).start();
+                } else if (cameraId.equals("tea"))
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                String url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/classification/teatea";
+                                Map<String, Object> map = new HashMap<>();
+                                String baseStr = Base64Util.encode(jpeg);
+                                map.put("image", baseStr);
+                                map.put("top_num", "3");
+                                String param = GsonUtils.toJson(map);
+                                String accessToken = MyUtil.getAuth("O9MEbkNVsaNZKATg38S6HlcF","ICpZRttUW1OZpAsiUbQRMNGBF6Vqko1N");
+                                String resultStr = HttpUtil.post(url, accessToken, "application/json", param);
+                                com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(resultStr);
+                                String result = jsonObject.getJSONArray("results").getJSONObject(0).getString("name");
+                                if (result.equals("1")) {
+                                    handler.post(new UIRunable("西湖龙井"));
+                                } else {
+                                    handler.post(new UIRunable("铁观音"));
+                                }
+                                //Toast.makeText(TakePhotoActivity.this, result, Toast.LENGTH_SHORT).show();
+//                        spotsDialog.dismiss();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+
+                }
         });
         camera.captureImage();
     }
@@ -116,7 +152,6 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
 
     public class UIRunable implements Runnable{
         String ss;
-        String sss = "银耳";
         public UIRunable(String s) {
             this.ss = s;
         }
@@ -124,7 +159,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
         @Override
         public void run() {
             if (cameraId.equals("ingredients")) {
-                //Toast.makeText(TakePhotoActivity.this, ss, Toast.LENGTH_SHORT).show();
+                Toast.makeText(TakePhotoActivity.this, ss, Toast.LENGTH_SHORT).show();
                 BmobQuery<Ingredients> ingredientsBmobQuery = new BmobQuery<>("Ingredients");
                 ingredientsBmobQuery.findObjects(new FindListener<Ingredients>() {
                     @Override
@@ -132,9 +167,8 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                         if (null == e && null != list) {
                             boolean yes = false;
                             for (int i = 0; i < list.size(); i++) {
-                                if (list.get(i).getIngredientsName().equals(sss)) {
+                                if (list.get(i).getIngredientsName().equals(ss)) {
                                     yes = true;
-
                                     break;
                                 }
                             }
@@ -143,7 +177,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                                 Toast.makeText(TakePhotoActivity.this, "请正确摆好拍摄位置呦", Toast.LENGTH_SHORT).show();
                             } else {
                                 Intent intent = new Intent(TakePhotoActivity.this, ShowIngredientsActivity.class);
-                                intent.putExtra("result", sss);
+                                intent.putExtra("result", ss);
                                 startActivity(intent);
                             }
                         } else {
@@ -152,16 +186,17 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                     }
                 });
             } else if (cameraId.equals("tea")){
-                //Toast.makeText(TakePhotoActivity.this, ss, Toast.LENGTH_SHORT).show();
+                Toast.makeText(TakePhotoActivity.this, ss, Toast.LENGTH_LONG).show();
                 BmobQuery<Tea> ingredientsBmobQuery = new BmobQuery<>("Tea");
                 ingredientsBmobQuery.findObjects(new FindListener<Tea>() {
                     @Override
                     public void done(List<Tea> list, BmobException e) {
                         if (null == e && null != list) {
-                            Intent intent = new Intent(TakePhotoActivity.this, ShowTeaActivity.class);
-                            intent.putExtra("result", "铁观音");
-                            startActivity(intent);
                             spotsDialog.dismiss();
+                            Intent intent = new Intent(TakePhotoActivity.this, ShowTeaActivity.class);
+                            intent.putExtra("result", ss);
+                            startActivity(intent);
+//                            spotsDialog.dismiss();
 //                            boolean yes = false;
 //                            for (int i = 0; i < list.size(); i++) {
 //                                if (list.get(i).getTeaName().equals(ss)) {

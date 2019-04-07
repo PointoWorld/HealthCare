@@ -1,13 +1,16 @@
 package com.zxu.masterofpainting.Cha;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.zxu.masterofpainting.Adapter.MyPagerAdapter;
 import com.zxu.masterofpainting.Constants;
 import com.zxu.masterofpainting.R;
@@ -19,6 +22,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.hugeterry.coordinatortablayout.CoordinatorTabLayout;
+import cn.hugeterry.coordinatortablayout.listener.LoadHeaderImagesListener;
 import dmax.dialog.SpotsDialog;
 
 public class ShowTeaActivity extends AppCompatActivity {
@@ -51,7 +55,7 @@ public class ShowTeaActivity extends AppCompatActivity {
     }
 
     private void getIngredientsData(){
-        Toast.makeText(this, ingredientsName, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ingredientsName, Toast.LENGTH_SHORT).show();
         Constants.teaName = ingredientsName;
         ingredientsBmobQuery = new BmobQuery<>("Tea");
         ingredientsBmobQuery.addWhereEqualTo("teaName", ingredientsName);
@@ -64,6 +68,7 @@ public class ShowTeaActivity extends AppCompatActivity {
                         if (correctIngredients.getTeaName().equals(ingredientsName)) {
                             Constants.teaIntr= correctIngredients.getIntr();
                             Constants.teaUrl = correctIngredients.getImgUrl();
+
                             Constants.teachongPao = correctIngredients.getChongPao();
                             Constants.teasteps = correctIngredients.getSteps();
                             Constants.teaidentify = correctIngredients.getIdentify();
@@ -81,10 +86,10 @@ public class ShowTeaActivity extends AppCompatActivity {
     }
 
     private void setCoordinatorTabLayoutData(){
-        mImageArray = new int[]{
-                R.mipmap.longjing,
-                R.mipmap.longjing,
-                R.mipmap.longjing};
+//        mImageArray = new int[]{
+//                R.mipmap.longjing,
+//                R.mipmap.longjing,
+//                R.mipmap.longjing};
         mColorArray = new int[]{
                 android.R.color.holo_blue_light,
                 android.R.color.holo_green_dark,
@@ -93,6 +98,22 @@ public class ShowTeaActivity extends AppCompatActivity {
         mCoordinatorTabLayout = (CoordinatorTabLayout) findViewById(R.id.coordinatortablayout);
         mCoordinatorTabLayout.setTranslucentStatusBar(this)
                 .setTitle("                 "+ingredientsName)
+                .setLoadHeaderImagesListener(new LoadHeaderImagesListener() {
+                    @Override
+                    public void loadHeaderImages(ImageView imageView, TabLayout.Tab tab) {
+                        switch (tab.getPosition()) {
+                            case 0:
+                                loadImages(imageView, Constants.teaUrl);
+                                break;
+                            case 1:
+                                loadImages(imageView, Constants.teaUrl);
+                                break;
+                            case 2:
+                                loadImages(imageView, Constants.teaUrl);
+                                break;
+                        }
+                    }
+                })
                 .setBackEnable(true)
                 .setImageArray(mImageArray, mColorArray)
                 .setupWithViewPager(mViewPager);
@@ -114,6 +135,10 @@ public class ShowTeaActivity extends AppCompatActivity {
 
     private void initViewPager(){
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), mFragments, mTitles));
+    }
+
+    private void loadImages(ImageView imageView, String url) {
+        Glide.with(ShowTeaActivity.this).load(url).into(imageView);
     }
 
     @Override

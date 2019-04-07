@@ -87,9 +87,9 @@ public class ShowIngredientsActivity extends AppCompatActivity {
 
     private void setCoordinatorTabLayoutData(){
         mImageArray = new int[]{
-                R.mipmap.yiner,
-                R.mipmap.yiner,
-                R.mipmap.yiner};
+                R.mipmap.shanyao,
+                R.mipmap.shanyao,
+                R.mipmap.shanyao};
         mColorArray = new int[]{
                 android.R.color.holo_blue_light,
                 android.R.color.holo_orange_dark,

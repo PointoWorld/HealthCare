@@ -30,9 +30,12 @@ import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
 import com.laocaixw.layout.SuspendButtonLayout;
 import com.zxu.masterofpainting.R;
+import com.zxu.masterofpainting.activity.ClockActivity;
 import com.zxu.masterofpainting.activity.PhysiqueActivity;
 import com.zxu.masterofpainting.activity.ShowIngredientsActivity;
 import com.zxu.masterofpainting.activity.TakePhotoActivity;
+import com.zxu.masterofpainting.activity.TestingActivity;
+import com.zxu.masterofpainting.bean.User;
 
 import org.eazegraph.lib.charts.ValueLineChart;
 import org.eazegraph.lib.models.ValueLinePoint;
@@ -48,9 +51,11 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
+import cn.bmob.v3.BmobUser;
+
 import static android.app.Activity.RESULT_OK;
 
-public class TakePhotoFragment extends Fragment {
+public class TakePhotoFragment extends Fragment implements View.OnClickListener{
     private Handler handler = null;
     private Bitmap bitmap;
     public static final int TAKE_PHOTO = 1;
@@ -78,6 +83,8 @@ public class TakePhotoFragment extends Fragment {
 
     public void iniview(View view){
         mCubicValueLineChart = (ValueLineChart) view.findViewById(R.id.cubiclinechart);
+        view.findViewById(R.id.tizhi_test_yangye).setOnClickListener(this);
+        view.findViewById(R.id.daka_yangye).setOnClickListener(this);
         datas = Arrays.asList("中午不吃饭会心慌哦！","吃饱后短暂午睡可以让身体气血充足。");
         //SimpleMarqueeView<T>，SimpleMF<T>：泛型T指定其填充的数据类型，比如String，Spanned等
         marqueeView = (SimpleMarqueeView) view.findViewById(R.id.simpleMarqueeView);
@@ -92,12 +99,34 @@ public class TakePhotoFragment extends Fragment {
 
         series.addPoint(new ValueLinePoint("6号", 2.5f));
         series.addPoint(new ValueLinePoint("7号", 1.5f));
-        series.addPoint(new ValueLinePoint("8号", 1.5f));
-        series.addPoint(new ValueLinePoint("9号", 3.5f));
-        series.addPoint(new ValueLinePoint("10号", 5.5f));
+        series.addPoint(new ValueLinePoint("8号", 2.5f));
+        series.addPoint(new ValueLinePoint("9号", 1.5f));
+        series.addPoint(new ValueLinePoint("10号", 2.5f));
+        series.addPoint(new ValueLinePoint("11号", 3.5f));
+        series.addPoint(new ValueLinePoint("12号", 0.5f));
+        series.addPoint(new ValueLinePoint("13号", 1.5f));
 
         mCubicValueLineChart.addSeries(series);
         mCubicValueLineChart.startAnimation();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tizhi_test_yangye:
+                if (null != BmobUser.getCurrentUser(User.class)) {
+                    if (BmobUser.getCurrentUser(User.class).getTestState().equals("0")) {
+                        startActivity(new Intent(getContext(),TestingActivity.class));
+                    } else {
+                        Toast.makeText(getContext(), "您已经测试完了", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "您还没有登录呢", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.daka_yangye:
+                startActivity(new Intent(getContext(),ClockActivity.class));
+                break;
+        }
+    }
 }
