@@ -64,7 +64,7 @@ public class SuitableAvoidFragment extends Fragment {
             @Override
             public void done(List<Collocation> list, BmobException e) {
                 if (list != null) {
-                    Toast.makeText(getContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), ""+list.size(), Toast.LENGTH_SHORT).show();
                     for (int i = 0; i < list.size(); i++) {
                         String collocationIngredients = list.get(i).getCollocationIngredients();
                         if (collocationIngredients.contains(Constants.ingredientsName)) {

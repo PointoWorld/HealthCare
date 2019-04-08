@@ -48,7 +48,7 @@ public class HorizontalPagerAdapter extends PagerAdapter {
         //linearLayout.setBackgroundColor(R.color.colorAccentLight);
         textTig.setText(Constants.labelNameMenu[position]);
 
-        TextTagsAdapter adapter = new TextTagsAdapter(fragmentTagcloud,Constants.labelMenuContent[position]);
+        TextTagsAdapter adapter = new TextTagsAdapter(fragmentTagcloud,Constants.labelMenuContent[position],position);
         fragmentTagcloud.setAdapter(adapter);
 
         container.addView(view);

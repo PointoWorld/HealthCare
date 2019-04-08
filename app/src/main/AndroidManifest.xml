@@ -105,7 +105,8 @@
                 <action android:name="com.tencent.liteav.demo.play.action.float.click" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ClockActivity"></activity>
+        <activity android:name=".activity.ClockActivity" />
+        <activity android:name=".activity.SmartCombinationActivity"></activity>
     </application>
 
 </manifest>

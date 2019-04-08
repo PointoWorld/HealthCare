@@ -36,10 +36,12 @@ public class TextTagsAdapter extends TagsAdapter {
     private List<String> dataSet = new ArrayList<>();
     private String[] strings;
     private TagCloudView view;
+    private int cardPosition;
 
-    public TextTagsAdapter(TagCloudView view, String[] strings) {
+    public TextTagsAdapter(TagCloudView view, String[] strings,int cardPosition) {
         this.view = view;
         this.strings = strings;
+        this.cardPosition = cardPosition;
         //Collections.addAll(dataSet, data);
     }
 
@@ -70,7 +72,6 @@ public class TextTagsAdapter extends TagsAdapter {
                 }
             }
         });
-
         tv.setTextColor(Color.rgb(255,111,58));
         tv.setTypeface(Typeface.SANS_SERIF);
 

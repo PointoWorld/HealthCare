@@ -13,20 +13,16 @@
         android:layout_height="match_parent"
         >
 
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/mPieChart"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:background="@color/colorBackGround"/>
         <ListView
             android:id="@+id/chengfen_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </ListView>
-
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/mPieChart"
-            android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:background="@color/colorBackGround"/>
-
-
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

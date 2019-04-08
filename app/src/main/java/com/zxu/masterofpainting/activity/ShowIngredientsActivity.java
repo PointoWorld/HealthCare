@@ -1,6 +1,7 @@
 package com.zxu.masterofpainting.activity;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +9,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.zxu.masterofpainting.Adapter.MyPagerAdapter;
+import com.zxu.masterofpainting.Cha.ShowTeaActivity;
 import com.zxu.masterofpainting.Constants;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.bean.Ingredients;
@@ -25,6 +29,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.hugeterry.coordinatortablayout.CoordinatorTabLayout;
+import cn.hugeterry.coordinatortablayout.listener.LoadHeaderImagesListener;
 import dmax.dialog.SpotsDialog;
 
 public class ShowIngredientsActivity extends AppCompatActivity {
@@ -86,10 +91,10 @@ public class ShowIngredientsActivity extends AppCompatActivity {
     }
 
     private void setCoordinatorTabLayoutData(){
-        mImageArray = new int[]{
-                R.mipmap.shanyao,
-                R.mipmap.shanyao,
-                R.mipmap.shanyao};
+//        mImageArray = new int[]{
+//                R.mipmap.shanyao,
+//                R.mipmap.shanyao,
+//                R.mipmap.shanyao};
         mColorArray = new int[]{
                 android.R.color.holo_blue_light,
                 android.R.color.holo_orange_dark,
@@ -98,6 +103,22 @@ public class ShowIngredientsActivity extends AppCompatActivity {
         mCoordinatorTabLayout = (CoordinatorTabLayout) findViewById(R.id.coordinatortablayout);
         mCoordinatorTabLayout.setTranslucentStatusBar(this)
                 .setTitle("                  "+ingredientsName)
+                .setLoadHeaderImagesListener(new LoadHeaderImagesListener() {
+                    @Override
+                    public void loadHeaderImages(ImageView imageView, TabLayout.Tab tab) {
+                        switch (tab.getPosition()) {
+                            case 0:
+                                loadImages(imageView, "https://i3.meishichina.com/attachment/ingredient/2012/03/22/20120322162619887836789.jpg");
+                                break;
+                            case 1:
+                                loadImages(imageView, "https://i3.meishichina.com/attachment/ingredient/2012/03/22/20120322162619887836789.jpg");
+                                break;
+                            case 2:
+                                loadImages(imageView, "https://i3.meishichina.com/attachment/ingredient/2012/03/22/20120322162619887836789.jpg");
+                                break;
+                        }
+                    }
+                })
                 .setBackEnable(true)
                 .setImageArray(mImageArray, mColorArray)
                 .setupWithViewPager(mViewPager);
@@ -119,6 +140,10 @@ public class ShowIngredientsActivity extends AppCompatActivity {
 
     private void initViewPager(){
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), mFragments, mTitles));
+    }
+
+    private void loadImages(ImageView imageView, String url) {
+        Glide.with(ShowIngredientsActivity.this).load(url).into(imageView);
     }
 
     @Override
