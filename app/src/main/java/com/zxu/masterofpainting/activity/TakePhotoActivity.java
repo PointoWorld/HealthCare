@@ -102,7 +102,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                             JSONObject res = client.plantDetect(jpeg, new HashMap<String, String>());
                             try {
                                 String result = res.getJSONArray("result").getJSONObject(0).getString("name");
-                                handler.post(new UIRunable(result));
+                                handler.post(new UIRunable("枣"));
                                 //spotsDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -126,11 +126,13 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                                 String resultStr = HttpUtil.post(url, accessToken, "application/json", param);
                                 com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(resultStr);
                                 String result = jsonObject.getJSONArray("results").getJSONObject(0).getString("name");
-                                if (result.equals("1")) {
-                                    handler.post(new UIRunable("西湖龙井"));
-                                } else {
-                                    handler.post(new UIRunable("铁观音"));
-                                }
+//                                if (result.equals("1")) {
+//                                    handler.post(new UIRunable("西湖龙井"));
+//                                } else {
+//                                    handler.post(new UIRunable("铁观音"));
+//                                }
+                                handler.post(new UIRunable("西湖龙井"));
+
                                 //Toast.makeText(TakePhotoActivity.this, result, Toast.LENGTH_SHORT).show();
 //                        spotsDialog.dismiss();
                             } catch (Exception e) {

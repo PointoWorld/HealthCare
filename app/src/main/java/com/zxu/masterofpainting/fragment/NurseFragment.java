@@ -3,6 +3,7 @@ package com.zxu.masterofpainting.fragment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.zxu.masterofpainting.Adapter.HorizontalPagerAdapter;
 import com.zxu.masterofpainting.Adapter.LabelMenuAdapter;
 import com.zxu.masterofpainting.Constants;
 import com.zxu.masterofpainting.R;
+import com.zxu.masterofpainting.activity.SmartCombinationActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,6 +114,7 @@ public class NurseFragment extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.start_zuhe:
+                startActivity(new Intent(getContext(),SmartCombinationActivity.class));
                 //mFabOptions.setButtonColor(R.id.start_zuhe, R.color.colorAccent);
                 Toast.makeText(getContext(), "组合了"+Constants.selectedLable.size()+"个元素", Toast.LENGTH_SHORT).show();
                 break;

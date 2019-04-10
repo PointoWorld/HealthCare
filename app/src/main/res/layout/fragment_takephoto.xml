@@ -316,14 +316,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
                                     android:layout_weight="1"
-                                    android:text="午时"
+                                    android:text="亥时"
                                     android:textSize="@dimen/dp_20"/>
                                 <TextView
                                     android:gravity="center"
                                     android:layout_width="match_parent"
                                     android:layout_height="0dp"
                                     android:layout_weight="1"
-                                    android:text="心经当令"
+                                    android:text="三焦经"
                                     android:textSize="@dimen/dp_20"/>
 
                             </LinearLayout>
@@ -387,7 +387,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:text="时辰"/>
+                                android:text="节气"/>
                         </LinearLayout>
                         <View
                             android:layout_width="@dimen/dp_100"

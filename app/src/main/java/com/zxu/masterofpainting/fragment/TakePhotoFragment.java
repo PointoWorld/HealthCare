@@ -101,7 +101,7 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         view.findViewById(R.id.solar_detail).setOnClickListener(this);
         hourName = (TextView) view.findViewById(R.id.hour_name);
         solarName = (TextView) view.findViewById(R.id.solar_name);
-        datas = Arrays.asList("中午不吃饭会心慌哦！","吃饱后短暂午睡可以让身体气血充足。");
+        datas = Arrays.asList("下午不吃饭会心慌哦！","吃饱后短暂午睡可以让身体气血充足。");
         solarDatas = Arrays.asList("谷雨节气后降雨增多，空气中的湿度逐渐加大，要针对其气候特点进行调养！","适宜的膳食有：参蒸鳝段、菊花鳝鱼等，具有祛风湿、舒筋骨、温补气血的功效");
         //SimpleMarqueeView<T>，SimpleMF<T>：泛型T指定其填充的数据类型，比如String，Spanned等
         marqueeView = (SimpleMarqueeView) view.findViewById(R.id.simpleMarqueeView);
