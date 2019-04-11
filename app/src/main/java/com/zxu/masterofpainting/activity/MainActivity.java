@@ -23,6 +23,7 @@ import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.bean.Tab;
 import com.zxu.masterofpainting.fragment.InfoFragment;
 import com.zxu.masterofpainting.fragment.NurseFragment;
+import com.zxu.masterofpainting.fragment.RecommendFragment;
 import com.zxu.masterofpainting.fragment.TakePhotoFragment;
 import com.zxu.masterofpainting.fragment.MyFragment;
 import com.zxu.masterofpainting.widget.FragmentTabHost;
@@ -85,12 +86,13 @@ public class MainActivity extends AppCompatActivity{
 
     private void initTab() {
         Tab tab_takephoto = new Tab(TakePhotoFragment.class,R.string.takephoto,R.drawable.selector_icon_takephoto);
-        Tab tab_photoinfo = new Tab(InfoFragment.class,R.string.detection,R.drawable.selector_icon_detection);
+        Tab tab_recommend = new Tab(RecommendFragment.class,R.string.detection,R.drawable.selector_icon_detection);
+        //Tab tab_photoinfo = new Tab(InfoFragment.class,R.string.detection,R.drawable.selector_icon_detection);
         Tab tab_test = new Tab(NurseFragment.class,R.string.nurse,R.drawable.selector_icon_nurse);
         Tab tab_user = new Tab(MyFragment.class,R.string.user,R.drawable.selector_user_info);
 
         mTabs.add(tab_takephoto);
-        mTabs.add(tab_photoinfo);
+        mTabs.add(tab_recommend);
         mTabs.add(tab_test);
         mTabs.add(tab_user);
         mInflater = LayoutInflater.from(this);
