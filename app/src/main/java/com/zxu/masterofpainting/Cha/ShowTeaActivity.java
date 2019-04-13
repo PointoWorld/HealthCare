@@ -29,7 +29,7 @@ public class ShowTeaActivity extends AppCompatActivity {
     private CoordinatorTabLayout mCoordinatorTabLayout;
     private int[] mImageArray, mColorArray;
     private ArrayList<Fragment> mFragments;
-    private final String[] mTitles = {"养生功效","冲泡方法", "鉴定方法"};
+    private final String[] mTitles = {"冲泡方法","养生功效", "鉴定方法"};
     private ViewPager mViewPager;
     private BmobQuery<Tea> ingredientsBmobQuery;
 
@@ -121,11 +121,11 @@ public class ShowTeaActivity extends AppCompatActivity {
 
     private void initFragments(){
         mFragments = new ArrayList<>();
-        IntrFragment nutritionalComponentsFragment = new IntrFragment();
         ChongPaoFragment edibleEfficacyFragment = new ChongPaoFragment();
+        IntrFragment nutritionalComponentsFragment = new IntrFragment();
         IdentifyFragment suitableAvoidFragment = new IdentifyFragment();
-        mFragments.add(nutritionalComponentsFragment);
         mFragments.add(edibleEfficacyFragment);
+        mFragments.add(nutritionalComponentsFragment);
         mFragments.add(suitableAvoidFragment);
 
 //        for (String title : mTitles) {

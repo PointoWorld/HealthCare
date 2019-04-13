@@ -6,6 +6,7 @@ import java.util.List;
 public class Constants {
 
     public static String ingredientsName;
+    public static String ingredientsImgUrl;
     public static String ingredientsNutrution;
     public static String ingredientsEfficiency;
     public static String ingredientsSuitableCollocation;
@@ -45,5 +46,8 @@ public class Constants {
 
     public static int isSelected = 0;
     public static List<String> selectedLable = new ArrayList<>();
-
+    public static String[] solar = {"立春","雨水","惊蛰","春分","清明","谷雨","立夏"
+            ,"小满","芒种","夏至","小暑","大暑"
+             ,"立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至","小寒","大寒"};
+    public static String[] hour = {"辰时","巳时","午时","未时","申时","酉时","戌时","亥时","子时","丑时","寅时","卯时"};
 }

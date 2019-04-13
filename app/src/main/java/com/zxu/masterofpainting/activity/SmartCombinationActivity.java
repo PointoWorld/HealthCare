@@ -12,7 +12,6 @@ import com.zxu.masterofpainting.Adapter.ZuheIngAdapter;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.bean.Collocation;
 import com.zxu.masterofpainting.bean.Ingredient1;
-import com.zxu.masterofpainting.bean.Ingredients;
 import com.zxu.masterofpainting.bean.Recommend;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import cn.bmob.v3.listener.FindListener;
 public class SmartCombinationActivity extends AppCompatActivity {
     private RecyclerView ingredientsRecyclerView;
     private RecyclerView collocationRecyclerView;
-    private List<Recommend> mRecommendList = new ArrayList<>();
+    private List<Recommend> mRmecomendList = new ArrayList<>();
     private List<Collocation> mCollocationList = new ArrayList<>();
 
     @Override
@@ -51,7 +50,7 @@ public class SmartCombinationActivity extends AppCompatActivity {
                     for (int i = 0; i < list.size(); i++) {
                         k++;
                         if (k < 7) {
-                            mRecommendList.add(new Recommend(list.get(i).getImg(),list.get(i).getIngredientsName()));
+                            mRmecomendList.add(new Recommend(list.get(i).getImg(),list.get(i).getIngredientsName()));
                         } else {
                             k = 0;
                             break;
@@ -90,7 +89,7 @@ public class SmartCombinationActivity extends AppCompatActivity {
     private void setIngredientsData(){
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
         ingredientsRecyclerView.setLayoutManager(layoutManager);
-        ZuheIngAdapter recommendAdapter = new ZuheIngAdapter(mRecommendList);
+        ZuheIngAdapter recommendAdapter = new ZuheIngAdapter(mRmecomendList);
         ingredientsRecyclerView.setAdapter(recommendAdapter);
     }
     private void setCollocationData(){

@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">健康养生</string>
+    <string name="app_name">养也</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="takephoto">拍一拍</string>
-    <string name="detection">养生系统</string>
-    <string name="nurse">食疗养生</string>
+    <string name="takephoto">主页</string>
+    <string name="detection">养生推荐</string>
+    <string name="nurse">养生球</string>
     <string name="user">我的</string>
 
     <string name="material">原料</string>

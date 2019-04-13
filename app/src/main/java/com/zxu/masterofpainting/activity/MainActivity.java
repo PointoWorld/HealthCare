@@ -21,7 +21,6 @@ import com.hitomi.cmlibrary.OnMenuStatusChangeListener;
 import com.laocaixw.layout.SuspendButtonLayout;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.bean.Tab;
-import com.zxu.masterofpainting.fragment.InfoFragment;
 import com.zxu.masterofpainting.fragment.NurseFragment;
 import com.zxu.masterofpainting.fragment.RecommendFragment;
 import com.zxu.masterofpainting.fragment.TakePhotoFragment;
@@ -32,12 +31,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
     private SuspendButtonLayout suspendButtonLayout;
-    private CircleMenu circleMenu;
-
     private FragmentTabHost mTabhost;
     private LayoutInflater mInflater;
-    private Toolbar toolbar;
-    private TextView toobarTitle;
     private List<Tab> mTabs = new ArrayList<>(4);
 
     @Override

@@ -40,10 +40,10 @@ public class SolarTermsActivity extends AppCompatActivity {
             @Override
             public void done(List<SolarTerms> list, BmobException e) {
                     if (e == null && list != null) {
-                        for (int i = 0; i < list.size(); i++) {
-                            mSolarTermsList.add(new SolarTerms(list.get(i).getSolarName(),list.get(i).getImageUrl(), list.get(i).getSolarTerms()));
-                        }
-                        setAllData();
+//                        for (int i = 0; i < list.size(); i++) {
+//                            mSolarTermsList.add(new SolarTerms(list.get(i).getSolarName(),list.get(i).getImageUrl(), list.get(i).getSolarTerms(),list.get(i).getTea()));
+//                        }
+//                        setAllData();
                     } else {
                         Toast.makeText(SolarTermsActivity.this, "呀，没找到数据", Toast.LENGTH_SHORT).show();
                     }

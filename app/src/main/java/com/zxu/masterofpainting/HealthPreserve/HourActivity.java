@@ -41,11 +41,11 @@ public class HourActivity extends AppCompatActivity {
             @Override
             public void done(List<Hour> list, BmobException e) {
                 if (e == null && list != null) {
-                    for (int i = 0; i < list.size(); i++) {
-                        mSolarTermsList.add(new SolarTerms(list.get(i).getHourName(),list.get(i).getImageUrl(), list.get(i).getIntr()));
-                        mHourList.add(new Hour(list.get(i).getHourName(), list.get(i).getIntr(), list.get(i).getImageUrl()));
-                    }
-                    setAllData();
+//                    for (int i = 0; i < list.size(); i++) {
+//                        mSolarTermsList.add(new SolarTerms(list.get(i).getHourName(),list.get(i).getImageUrl(), list.get(i).getIntr(),list.get(i).getHourName()));
+//                        mHourList.add(new Hour(list.get(i).getHourName(), list.get(i).getIntr(), list.get(i).getImageUrl()));
+//                    }
+//                    setAllData();
                 } else {
                     Toast.makeText(HourActivity.this, "呀，没找到数据", Toast.LENGTH_SHORT).show();
                 }

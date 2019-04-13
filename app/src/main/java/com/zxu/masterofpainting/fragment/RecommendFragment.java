@@ -69,7 +69,7 @@ public class RecommendFragment extends Fragment {
 
             }
         });
-        vp_3.setCurrentItem(1);
+        vp_3.setCurrentItem(0);
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

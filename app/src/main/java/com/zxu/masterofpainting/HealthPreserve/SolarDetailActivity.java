@@ -5,22 +5,32 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zxu.masterofpainting.Adapter.EfficacyAdapter;
 import com.zxu.masterofpainting.R;
+import com.zxu.masterofpainting.Recommend.SolarTeaAdapter;
 import com.zxu.masterofpainting.bean.EfficacyItem;
+import com.zxu.masterofpainting.bean.Recommend;
+import com.zxu.masterofpainting.bean.SolarTea;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SolarDetailActivity extends AppCompatActivity {
     private String imagUrl;
-    private String solarIntr;
+    private String solarTeaIntr;
+    private String solarFruitsIntr;
+    private String solarIntrr;
     private SimpleDraweeView solarSimpleDraweeView;
-    private RecyclerView solarRecyclerView;
-    private List<EfficacyItem> mEfficacyItemList = new ArrayList<>();
+    private SimpleDraweeView solarTeaSimpleDraweeView;
+    private RecyclerView solarFruitsRecyclerView;
+    private TextView teaTitle;
+    private TextView teaIntr;
+    private TextView solarIntr;
+    private List<SolarTea> mSolarTeaList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,36 +43,48 @@ public class SolarDetailActivity extends AppCompatActivity {
     private void initView() {
         Intent intent = getIntent();
         imagUrl = intent.getStringExtra("imagUrl");
-        solarIntr = intent.getStringExtra("solarIntr");
+        solarTeaIntr = intent.getStringExtra("solarTea");
+        solarFruitsIntr = intent.getStringExtra("solarFruits");
+        solarIntrr = intent.getStringExtra("solarIntr");
         solarSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.solar_detai_imag);
-        solarRecyclerView = (RecyclerView) findViewById(R.id.solar_detai_recycler_view);
-        setAllData();
+
+        solarIntr = (TextView) findViewById(R.id.solar_intr);
+
+        teaTitle = (TextView) findViewById(R.id.tea_title);
+        teaIntr = (TextView) findViewById(R.id.tea_intr);
+        solarTeaSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.tea_sv);
+
+        solarFruitsRecyclerView = (RecyclerView) findViewById(R.id.fruits_rv);
+
+        solarSimpleDraweeView.setImageURI(imagUrl);
+        setSolarData();
+        setTeaData();
+        setFruitsData();
     }
 
-    private void setAllData(){
-        if (solarIntr != null) {
-            String[] split = solarIntr.split("#");
-            for (int i = 0; i < split.length; i++) {
-                mEfficacyItemList.add(new EfficacyItem(split[i].split("@")[0], split[i].split("@")[1]));
-            }
-            StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
-            solarRecyclerView.setLayoutManager(layoutManager);
-            EfficacyAdapter solarDetaiAdapter = new EfficacyAdapter(mEfficacyItemList);
-            solarSimpleDraweeView.setImageURI(imagUrl);
-            solarRecyclerView.setAdapter(solarDetaiAdapter);
-        } else if (imagUrl!=null){
-            Toast.makeText(this, "imagurl != null", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
+    private void setSolarData(){
+        solarIntr.setText(solarIntrr);
+    }
+
+    private void setTeaData(){
+        String[] teaSplit = solarTeaIntr.split("@");
+        if (teaSplit.length == 3) {
+            teaTitle.setText(teaSplit[0]);
+            teaIntr.setText(teaSplit[2]);
+            solarTeaSimpleDraweeView.setImageURI(teaSplit[1]);
         }
-//        String[] split = solarIntr.split("#");
-//        for (int i = 0; i < split.length; i++) {
-//            mEfficacyItemList.add(new EfficacyItem(split[i].split("@")[0], split[i].split("@")[1]));
-//        }
-//        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
-//        solarRecyclerView.setLayoutManager(layoutManager);
-//        EfficacyAdapter solarDetaiAdapter = new EfficacyAdapter(mEfficacyItemList);
-//        solarSimpleDraweeView.setImageURI(imagUrl);
-//        solarRecyclerView.setAdapter(solarDetaiAdapter);
+    }
+    private void setFruitsData(){
+        String[] fruitsSplit = solarFruitsIntr.split("#");
+        for (int i = 0; i < fruitsSplit.length; i++) {
+            String[] strings = fruitsSplit[i].split("@");
+            if (strings.length == 3) {
+                mSolarTeaList.add(new SolarTea(strings[0], strings[1], strings[2]));
+            }
+        }
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        solarFruitsRecyclerView.setLayoutManager(layoutManager);
+        SolarTeaAdapter solarTeaAdapter = new SolarTeaAdapter(mSolarTeaList);
+        solarFruitsRecyclerView.setAdapter(solarTeaAdapter);
     }
 }

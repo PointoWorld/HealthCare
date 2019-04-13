@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.zxu.masterofpainting.MyApplication;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.bean.User;
 

@@ -61,7 +61,7 @@ public class CollectionActivity extends AppCompatActivity {
     }
 
     private void getData(){
-        final BmobQuery<Collection> collectionBmobQuery = new BmobQuery<>("CollectionAdapter");
+        final BmobQuery<Collection> collectionBmobQuery = new BmobQuery<>("Collection");
         collectionBmobQuery.findObjects(new FindListener<Collection>() {
             @Override
             public void done(List<Collection> list, BmobException e) {

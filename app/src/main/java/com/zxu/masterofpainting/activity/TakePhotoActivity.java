@@ -27,7 +27,7 @@ import com.flurgle.camerakit.CameraView;
 import com.zxu.masterofpainting.Cha.ShowTeaActivity;
 import com.zxu.masterofpainting.Cha.Tea;
 import com.zxu.masterofpainting.R;
-import com.zxu.masterofpainting.bean.Ingredients;
+import com.zxu.masterofpainting.bean.Ingredient1;
 import com.zxu.masterofpainting.utils.GsonUtils;
 import com.zxu.masterofpainting.utils.HttpUtil;
 import com.zxu.masterofpainting.utils.MyUtil;
@@ -120,18 +120,18 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                                 Map<String, Object> map = new HashMap<>();
                                 String baseStr = Base64Util.encode(jpeg);
                                 map.put("image", baseStr);
-                                map.put("top_num", "3");
+                                map.put("top_num", "1");
                                 String param = GsonUtils.toJson(map);
                                 String accessToken = MyUtil.getAuth("O9MEbkNVsaNZKATg38S6HlcF","ICpZRttUW1OZpAsiUbQRMNGBF6Vqko1N");
                                 String resultStr = HttpUtil.post(url, accessToken, "application/json", param);
                                 com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(resultStr);
                                 String result = jsonObject.getJSONArray("results").getJSONObject(0).getString("name");
-//                                if (result.equals("1")) {
-//                                    handler.post(new UIRunable("西湖龙井"));
-//                                } else {
-//                                    handler.post(new UIRunable("铁观音"));
-//                                }
-                                handler.post(new UIRunable("西湖龙井"));
+                                if (result.equals("1")) {
+                                    handler.post(new UIRunable("西湖龙井"));
+                                } else {
+                                    handler.post(new UIRunable("铁观音"));
+                                }
+//                                handler.post(new UIRunable(result));
 
                                 //Toast.makeText(TakePhotoActivity.this, result, Toast.LENGTH_SHORT).show();
 //                        spotsDialog.dismiss();
@@ -162,10 +162,10 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
         public void run() {
             if (cameraId.equals("ingredients")) {
                 Toast.makeText(TakePhotoActivity.this, ss, Toast.LENGTH_SHORT).show();
-                BmobQuery<Ingredients> ingredientsBmobQuery = new BmobQuery<>("Ingredients");
-                ingredientsBmobQuery.findObjects(new FindListener<Ingredients>() {
+                BmobQuery<Ingredient1> ingredientsBmobQuery = new BmobQuery<>("Ingredient1");
+                ingredientsBmobQuery.findObjects(new FindListener<Ingredient1>() {
                     @Override
-                    public void done(List<Ingredients> list, BmobException e) {
+                    public void done(List<Ingredient1> list, BmobException e) {
                         if (null == e && null != list) {
                             boolean yes = false;
                             for (int i = 0; i < list.size(); i++) {
@@ -183,6 +183,7 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                                 startActivity(intent);
                             }
                         } else {
+                            spotsDialog.dismiss();
                             Toast.makeText(TakePhotoActivity.this, "请正确摆好拍摄位置呦", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -194,30 +195,25 @@ public class TakePhotoActivity extends AppCompatActivity implements View.OnLayou
                     @Override
                     public void done(List<Tea> list, BmobException e) {
                         if (null == e && null != list) {
+
+                            boolean yes = false;
+                            for (int i = 0; i < list.size(); i++) {
+                                if (list.get(i).getTeaName().equals(ss)) {
+                                    yes = true;
+                                    break;
+                                }
+                            }
                             spotsDialog.dismiss();
-                            Intent intent = new Intent(TakePhotoActivity.this, ShowTeaActivity.class);
-                            intent.putExtra("result", ss);
-                            startActivity(intent);
-//                            spotsDialog.dismiss();
-//                            boolean yes = false;
-//                            for (int i = 0; i < list.size(); i++) {
-//                                if (list.get(i).getTeaName().equals(ss)) {
-//                                    yes = true;
-//
-//                                    break;
-//                                }
-//                            }
-//                            spotsDialog.dismiss();
-//                            if (!yes) {
-//                                Toast.makeText(TakePhotoActivity.this, "请正确摆好拍摄位置呦", Toast.LENGTH_SHORT).show();
-//                            } else {
-////                                Intent intent = new Intent(TakePhotoActivity.this, ShowTeaActivity.class);
-////                                intent.putExtra("result", "西湖龙井");
-////                                startActivity(intent);
-//                            }
-//                        } else {
-//                            Toast.makeText(TakePhotoActivity.this, "请正确摆好拍摄位置呦", Toast.LENGTH_SHORT).show();
-//                        }
+                            if (!yes) {
+                                Toast.makeText(TakePhotoActivity.this, "请正确摆好拍摄位置呦", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(TakePhotoActivity.this, ShowTeaActivity.class);
+                                intent.putExtra("result", ss);
+                                startActivity(intent);
+                            }
+                        } else {
+                            spotsDialog.dismiss();
+                            Toast.makeText(TakePhotoActivity.this, "请正确摆好拍摄位置呦", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

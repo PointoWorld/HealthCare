@@ -17,7 +17,7 @@ import com.zxu.masterofpainting.Adapter.MyPagerAdapter;
 import com.zxu.masterofpainting.Cha.ShowTeaActivity;
 import com.zxu.masterofpainting.Constants;
 import com.zxu.masterofpainting.R;
-import com.zxu.masterofpainting.bean.Ingredients;
+import com.zxu.masterofpainting.bean.Ingredient1;
 import com.zxu.masterofpainting.fragment.EdibleEfficacyFragment;
 import com.zxu.masterofpainting.fragment.NutritionalComponentsFragment;
 import com.zxu.masterofpainting.fragment.SuitableAvoidFragment;
@@ -38,7 +38,7 @@ public class ShowIngredientsActivity extends AppCompatActivity {
     private ArrayList<Fragment> mFragments;
     private final String[] mTitles = {"养生成分", "养生功效", "调养搭配"};
     private ViewPager mViewPager;
-    private BmobQuery<Ingredients> ingredientsBmobQuery;
+    private BmobQuery<Ingredient1> ingredientsBmobQuery;
     //食材名称
     private String ingredientsName;
     private SpotsDialog spotsDialog;
@@ -50,7 +50,7 @@ public class ShowIngredientsActivity extends AppCompatActivity {
 
         initView();
         getIngredientsData();
-        setCoordinatorTabLayoutData();
+//        setCoordinatorTabLayoutData();
     }
 
     private void initView() {
@@ -65,18 +65,20 @@ public class ShowIngredientsActivity extends AppCompatActivity {
     private void getIngredientsData(){
         Toast.makeText(this, ingredientsName, Toast.LENGTH_SHORT).show();
         Constants.ingredientsName = ingredientsName;
-        ingredientsBmobQuery = new BmobQuery<>("Ingredients");
+        ingredientsBmobQuery = new BmobQuery<>("Ingredient1");
         ingredientsBmobQuery.addWhereEqualTo("IngredientsName", ingredientsName);
-        ingredientsBmobQuery.findObjects(new FindListener<Ingredients>() {
+        ingredientsBmobQuery.findObjects(new FindListener<Ingredient1>() {
             @Override
-            public void done(List<Ingredients> list, BmobException e) {
+            public void done(List<Ingredient1> list, BmobException e) {
                 if (list != null) {
                     for (int i = 0; i < list.size(); i++) {
-                        Ingredients correctIngredients = list.get(i);
+                        Ingredient1 correctIngredients = list.get(i);
                         if (correctIngredients.getIngredientsName().equals(ingredientsName)) {
                             Constants.ingredientsNutrution= correctIngredients.getNutrition();
                             Constants.ingredientsEfficiency = correctIngredients.getEfficiency();
+                            Constants.ingredientsImgUrl = correctIngredients.getImg();
                             Constants.ingredientsSuitableCollocation = correctIngredients.getSuitableCollocation();
+                            setCoordinatorTabLayoutData(correctIngredients.getImg());
                             initFragments();
                             initViewPager();
                             spotsDialog.dismiss();
@@ -90,11 +92,7 @@ public class ShowIngredientsActivity extends AppCompatActivity {
         });
     }
 
-    private void setCoordinatorTabLayoutData(){
-//        mImageArray = new int[]{
-//                R.mipmap.shanyao,
-//                R.mipmap.shanyao,
-//                R.mipmap.shanyao};
+    private void setCoordinatorTabLayoutData(final String s){
         mColorArray = new int[]{
                 android.R.color.holo_blue_light,
                 android.R.color.holo_orange_dark,
@@ -108,13 +106,13 @@ public class ShowIngredientsActivity extends AppCompatActivity {
                     public void loadHeaderImages(ImageView imageView, TabLayout.Tab tab) {
                         switch (tab.getPosition()) {
                             case 0:
-                                loadImages(imageView, "https://i3.meishichina.com/attachment/ingredient/2012/03/22/20120322162619887836789.jpg");
+                                loadImages(imageView, s);
                                 break;
                             case 1:
-                                loadImages(imageView, "https://i3.meishichina.com/attachment/ingredient/2012/03/22/20120322162619887836789.jpg");
+                                loadImages(imageView, s);
                                 break;
                             case 2:
-                                loadImages(imageView, "https://i3.meishichina.com/attachment/ingredient/2012/03/22/20120322162619887836789.jpg");
+                                loadImages(imageView, s);
                                 break;
                         }
                     }

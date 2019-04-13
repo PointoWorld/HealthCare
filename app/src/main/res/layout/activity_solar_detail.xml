@@ -15,11 +15,95 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_180" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/solar_detai_recycler_view"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_7"
+                android:padding="@dimen/dp_3"
+                app:cardCornerRadius="@dimen/dp_10">
+                <TextView
+                    android:id="@+id/solar_intr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    </android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_7"
+                app:cardCornerRadius="@dimen/dp_10">
+                <LinearLayout
+                    android:padding="@dimen/dp_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tea_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/dp_20"
+                        android:textColor="@color/colorPrimaryDark"/>
+
+                    <TextView
+                        android:id="@+id/tea_intr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/tea_sv"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_200"
+                        android:layout_marginBottom="@dimen/dp_5"/>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_7"
+                android:layout_marginRight="@dimen/dp_7"
+                app:cardCornerRadius="@dimen/dp_10"
+                android:padding="@dimen/dp_3">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <View
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="@dimen/dp_5"
+                            android:background="@color/colorPrimaryDark"
+                            android:layout_height="@dimen/dp_15"
+                            android:layout_marginRight="@dimen/dp_3"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="水果推荐"
+                            android:textSize="@dimen/dp_20"
+                            android:textColor="@color/colorPrimaryDark"/>
+                    </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/fruits_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </android.support.v7.widget.RecyclerView>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
