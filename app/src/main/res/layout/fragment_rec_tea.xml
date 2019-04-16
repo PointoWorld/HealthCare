@@ -6,38 +6,66 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragment.RecTeaFragment">
-
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/tea_sd"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="@dimen/dp_5"
-            android:layout_height="@dimen/dp_30"
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/dp_3"
-            android:layout_marginRight="@dimen/dp_3"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_30"
-            android:text="推荐茶叶"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10"/>
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rec_tea_rv"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="@dimen/dp_5"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_marginRight="@dimen/dp_3"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_30"
+                    android:text="花茶推荐"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/flower_tea_rv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_300">
 
-    </android.support.v7.widget.RecyclerView>
+            </android.support.v7.widget.RecyclerView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="@dimen/dp_5"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_marginRight="@dimen/dp_3"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_30"
+                    android:text="推荐茶叶"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_10"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rec_tea_rv"
+                android:layout_width="match_parent"
+                android:layout_height="490dp">
 
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

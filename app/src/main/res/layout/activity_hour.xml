@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackGround"
-    tools:context=".HealthPreserve.HourActivity">
+    tools:context=".HealthPreserve.HourDetailActivity">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/hour_simple_view"

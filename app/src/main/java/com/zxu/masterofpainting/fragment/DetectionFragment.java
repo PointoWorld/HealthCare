@@ -101,7 +101,7 @@ public class DetectionFragment extends Fragment implements SwipeStack.SwipeStack
     @Override
     public void onStackEmpty() {
 //        String physiqueStr = getPhysiqueStr(scoreList);
-        String physiqueStr = "气虚质";
+        String physiqueStr = "平和质";
         Intent intent = new Intent(getContext(),PhysiqueActivity.class);
         intent.putExtra("physique", physiqueStr);
         startActivity(intent);

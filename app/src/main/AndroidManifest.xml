@@ -26,7 +26,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_mylauncher"
+        android:icon="@mipmap/bg"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -55,44 +55,81 @@
 
         <activity
             android:name=".activity.ShowIngredientsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ShowIngredientsActivityTheme" />
         <activity
             android:name=".activity.CollocationDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CollocationDetailActivityTheme" />
-        <activity android:name=".activity.TestActivity" />
+        <activity
+            android:name=".activity.TestActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CollocationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CollocationActivityTheme" />
         <activity
             android:name=".activity.CollectionActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/CollectionActivityTheme" />
         <activity
             android:name=".activity.LabelDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/LabelDetailActivityTheme" />
         <activity
             android:name=".activity.LabelFineCollocationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/LabelDetailActivityTheme" />
         <activity
             android:name=".activity.PhysiqueActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ShowIngredientsActivityTheme" />
-        <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.TestingActivity" />
-        <activity android:name=".activity.VitaminActivity" />
-        <activity android:name=".activity.VitaminInfoActivity" />
-        <activity android:name=".activity.MineralActivity" />
-        <activity android:name=".activity.SliderActivity" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TestingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.VitaminActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.VitaminInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MineralActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SliderActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.TakePhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TakephotoActivityTheme" />
-        <activity android:name=".activity.UserInfoActivity" />
-        <activity android:name=".HealthPreserve.ChineseMedicineActivity" />
-        <activity android:name=".HealthPreserve.MedicineDetaiActivity" />
-        <activity android:name=".HealthPreserve.SolarTermsActivity" />
-        <activity android:name=".HealthPreserve.SolarDetailActivity" />
-        <activity android:name=".HealthPreserve.HourActivity" />
-        <activity android:name=".HealthPreserve.ChaCareActivity" />
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthPreserve.ChineseMedicineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthPreserve.MedicineDetaiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthPreserve.SolarTermsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthPreserve.SolarDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthPreserve.HourDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HealthPreserve.ChaCareActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Cha.ShowTeaActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -105,8 +142,19 @@
                 <action android:name="com.tencent.liteav.demo.play.action.float.click" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ClockActivity" />
-        <activity android:name=".activity.SmartCombinationActivity"></activity>
+        <activity
+            android:name=".activity.ClockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SmartCombinationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ChangeInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Cha.flourTea.ShowFTeaActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.CupSeeActivity"></activity>
     </application>
 
 </manifest>

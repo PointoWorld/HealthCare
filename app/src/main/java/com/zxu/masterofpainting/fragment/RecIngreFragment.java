@@ -105,7 +105,7 @@ public class RecIngreFragment extends Fragment {
         ingredientsRecyclerView.setAdapter(recommendAdapter);
     }
     private void setCollocationData(){
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         collocationRecyclerView.setLayoutManager(layoutManager);
         CollocationAdapter recommendAdapter = new CollocationAdapter(mCollocationList);
         collocationRecyclerView.setAdapter(recommendAdapter);

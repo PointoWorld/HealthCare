@@ -8,18 +8,33 @@
     android:orientation="vertical"
     tools:context=".activity.ClockActivity">
 
-    <com.zxu.masterofpainting.view.SignDate
-        android:id="@+id/signDate"
-        android:padding="@dimen/dp_8"
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="@dimen/dp_10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.zxu.masterofpainting.view.SignDate>
+        android:layout_height="@dimen/dp_100"
+        android:layout_marginTop="@dimen/dp_60"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:layout_marginRight="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:padding="@dimen/dp_80">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_CustomOptions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:background="@color/colorYellow"
+                android:text="开始" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:layout_margin="@dimen/dp_8"
         app:cardCornerRadius="@dimen/dp_10"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_80">
+        android:layout_height="@dimen/dp_100">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -67,96 +82,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/add"/>
-            </LinearLayout>
-
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_margin="@dimen/dp_8"
-        app:cardCornerRadius="@dimen/dp_10"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_80">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_20"
-                android:orientation="horizontal">
-                <View
-                    android:layout_marginLeft="@dimen/dp_5"
-                    android:layout_width="@dimen/dp_5"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/dp_3"
-                    android:background="@color/colorPrimaryDark"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="今日起居作息"
-                    android:textColor="@color/colorYellow"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="起床时间"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_3"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="7:00"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="@dimen/dp_180"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="午睡时间"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_3"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="13:00"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="入睡时间"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_3"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="10:00"/>
-                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

@@ -25,12 +25,13 @@ import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet;
 import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
 import com.zxu.masterofpainting.Constants;
+import com.zxu.masterofpainting.HealthPreserve.HourDetailActivity;
 import com.zxu.masterofpainting.HealthPreserve.SolarDetailActivity;
 import com.zxu.masterofpainting.MyApplication;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.activity.ClockActivity;
+import com.zxu.masterofpainting.activity.CupSeeActivity;
 import com.zxu.masterofpainting.activity.TestingActivity;
-import com.zxu.masterofpainting.bean.Hour;
 import com.zxu.masterofpainting.bean.SolarTerms;
 import com.zxu.masterofpainting.bean.User;
 
@@ -40,8 +41,6 @@ import org.eazegraph.lib.models.ValueLineSeries;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -55,6 +54,11 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
     private RadarChart chart;
     private TextView hourName;
     private TextView solarName;
+    private TextView cupSum;
+    private TextView cupCategory;
+    private TextView ziyoyji;
+    private TextView fushe;
+    private TextView kaluli;
     List<String> datas;
     List<String> solarDatas;
     SimpleMarqueeView<String> marqueeView;
@@ -70,7 +74,7 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
 
         View view = inflater.inflate(R.layout.fragment_takephoto,container,false);
         iniview(view);
-
+        loadCupData();
         return view;
     }
 
@@ -78,10 +82,16 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         mCubicValueLineChart = (ValueLineChart) view.findViewById(R.id.cubiclinechart);
         hourName = (TextView) view.findViewById(R.id.hour_name);
         solarName = (TextView) view.findViewById(R.id.solar_name);
+        cupSum = (TextView) view.findViewById(R.id.cup_sum);
+        cupCategory = (TextView) view.findViewById(R.id.cup_category);
+        ziyoyji = (TextView) view.findViewById(R.id.ziyoyji);
+        fushe = (TextView) view.findViewById(R.id.fushe);
+        kaluli = (TextView) view.findViewById(R.id.kaluli);
         view.findViewById(R.id.tizhi_test_yangye).setOnClickListener(this);
         view.findViewById(R.id.daka_yangye).setOnClickListener(this);
         view.findViewById(R.id.time_detail).setOnClickListener(this);
         view.findViewById(R.id.solar_detail).setOnClickListener(this);
+        view.findViewById(R.id.cup_see_cv).setOnClickListener(this);
         getCurrentTime();
         loadAllData(view);
     }
@@ -119,7 +129,7 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         chart.setWebColorInner(Color.LTGRAY);
         chart.setWebAlpha(100);
 
-        setSanJiaoData();
+        //setSanJiaoData();
 
         chart.animateXY(1400, 1400, Easing.EaseInOutQuad);
 
@@ -154,24 +164,49 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         l.setXEntrySpace(7f);
         l.setYEntrySpace(5f);
         l.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-
-
+        //teaRecord();
+    }
+    private void teaRecord(){
         series = new ValueLineSeries();
         series.setColor(getResources().getColor(R.color.colorPrimaryDark));
+        BmobQuery<User> userBmobQuery = new BmobQuery<>("_User");
+        userBmobQuery.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (null == e && null != list) {
+                    for (int i = 0; i < list.size(); i++) {
+                        //Toast.makeText(getContext(), "haha", Toast.LENGTH_SHORT).show();
+                        if (list.get(i).getUsername().equals(BmobUser.getCurrentUser(User.class).getUsername())) {
+                            Toast.makeText(getContext(), "haha", Toast.LENGTH_SHORT).show();
+                            cupSum.setText(list.get(i).getCupSum() + "杯");
+                            cupCategory.setText(list.get(i).getCupcategory());
+                            String[] split = list.get(i).getTeaRecord().split(";");
+                            for (int j = 0; j < split.length; j++) {
+                                String[] itemSplit = split[j].split(",");
+                                series.addPoint(new ValueLinePoint(itemSplit[0], Float.parseFloat(itemSplit[1])));
+                            }
+                            mCubicValueLineChart.addSeries(series);
+                            mCubicValueLineChart.startAnimation();
+                        }
+                    }
+                } else {
+                    cupSum.setText("0杯");
+                    cupCategory.setText("无");
+//                    series.addPoint(new ValueLinePoint("1号", 2.5f));
+//                    series.addPoint(new ValueLinePoint("2号", 1.5f));
+//                    series.addPoint(new ValueLinePoint("3号", 2.5f));
+//                    series.addPoint(new ValueLinePoint("4号", 1.5f));
+//                    series.addPoint(new ValueLinePoint("5号", 2.5f));
+//                    series.addPoint(new ValueLinePoint("6号", 3.5f));
+//                    series.addPoint(new ValueLinePoint("7号", 0.5f));
+//                    series.addPoint(new ValueLinePoint("8号", 1.5f));
+                    mCubicValueLineChart.addSeries(series);
+                    mCubicValueLineChart.startAnimation();
+                }
+            }
+        });
 
-        series.addPoint(new ValueLinePoint("6号", 2.5f));
-        series.addPoint(new ValueLinePoint("7号", 1.5f));
-        series.addPoint(new ValueLinePoint("8号", 2.5f));
-        series.addPoint(new ValueLinePoint("9号", 1.5f));
-        series.addPoint(new ValueLinePoint("10号", 2.5f));
-        series.addPoint(new ValueLinePoint("11号", 3.5f));
-        series.addPoint(new ValueLinePoint("12号", 0.5f));
-        series.addPoint(new ValueLinePoint("13号", 1.5f));
-
-        mCubicValueLineChart.addSeries(series);
-        mCubicValueLineChart.startAnimation();
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -187,28 +222,19 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
                 }
                 break;
             case R.id.daka_yangye:
-                startActivity(new Intent(getContext(),ClockActivity.class));
+                if (null != BmobUser.getCurrentUser(User.class)) {
+                    startActivity(new Intent(getContext(),ClockActivity.class));
+                } else {
+                    Toast.makeText(getContext(), "您还没登录呦", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.cup_see_cv:
+                startActivity(new Intent(getContext(),CupSeeActivity.class));
                 break;
             case R.id.time_detail:
-                BmobQuery<Hour> hourTermsBmobQuery = new BmobQuery<>("Hour");
-                hourTermsBmobQuery.findObjects(new FindListener<Hour>() {
-                    @Override
-                    public void done(List<Hour> list, BmobException e) {
-                        if (e == null && list != null) {
-                            for (int i = 0; i < list.size(); i++) {
-                                if (list.get(i).getHourName().equals(hourName.getText())) {
-                                    Intent intent = new Intent(getContext(),SolarDetailActivity.class);
-                                    intent.putExtra("imagUrl", list.get(i).getImageUrl());
-                                    intent.putExtra("solarIntr", list.get(i).getIntr());
-                                    startActivity(intent);
-                                    break;
-                                }
-                            }
-                        } else {
-                            Toast.makeText(getContext(), "网络可能不好呦", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                Intent intent = new Intent(getContext(),HourDetailActivity.class);
+                intent.putExtra("hourName", hourName.getText());
+                startActivity(intent);
                 break;
             case R.id.solar_detail:
                 BmobQuery<SolarTerms> solarTermsBmobQuery = new BmobQuery<>("SolarTerms");
@@ -241,24 +267,65 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
     }
 
     private void setSanJiaoData() {
-        float mul = 80;
-        float min = 20;
-        int cnt = 3;
         ArrayList<RadarEntry> entries1 = new ArrayList<>();
         ArrayList<RadarEntry> entries2 = new ArrayList<>();
 
-            entries1.add(new RadarEntry(40));
-            entries1.add(new RadarEntry(20));
-            entries1.add(new RadarEntry(30));
+            entries1.add(new RadarEntry(50));
+            entries1.add(new RadarEntry(43));
+            entries1.add(new RadarEntry(60));
 
             entries2.add(new RadarEntry(30));
-            entries2.add(new RadarEntry(60));
+            entries2.add(new RadarEntry(30));
             entries2.add(new RadarEntry(20));
 
 
-        RadarDataSet set1 = new RadarDataSet(entries1, "昨日");
-        set1.setColor(getResources().getColor(R.color.colorAccent));
-        set1.setFillColor(getResources().getColor(R.color.colorPrimaryDark));
+        RadarDataSet set1 = new RadarDataSet(entries1, "标准");
+        set1.setColor(getResources().getColor(R.color.blue_semi_transparent));
+        //set1.setFillColor(getResources().getColor(R.color.colorPrimaryDark));
+        set1.setDrawFilled(true);
+        set1.setFillAlpha(180);
+        set1.setLineWidth(2f);
+        set1.setDrawHighlightCircleEnabled(true);
+        set1.setDrawHighlightIndicators(false);
+
+        RadarDataSet set2 = new RadarDataSet(entries2, "今日");
+        set2.setColor(getResources().getColor(R.color.colorPrimaryDark));
+        set2.setFillColor(getResources().getColor(R.color.colorPrimaryDark));
+        set2.setDrawFilled(true);
+        set2.setFillAlpha(180);
+        set2.setLineWidth(2f);
+        set2.setDrawHighlightCircleEnabled(true);
+        set2.setDrawHighlightIndicators(false);
+
+        ArrayList<IRadarDataSet> sets = new ArrayList<>();
+        sets.add(set1);
+        sets.add(set2);
+
+        RadarData data = new RadarData(sets);
+        //data.setValueTypeface(tfLight);
+        data.setValueTextSize(8f);
+        data.setDrawValues(false);
+        data.setValueTextColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        chart.setData(data);
+        chart.invalidate();
+    }
+    private void setNullSanJiao(){
+        ArrayList<RadarEntry> entries1 = new ArrayList<>();
+        ArrayList<RadarEntry> entries2 = new ArrayList<>();
+
+        entries1.add(new RadarEntry(50));
+        entries1.add(new RadarEntry(43));
+        entries1.add(new RadarEntry(60));
+
+        entries2.add(new RadarEntry(0));
+        entries2.add(new RadarEntry(0));
+        entries2.add(new RadarEntry(0));
+
+
+        RadarDataSet set1 = new RadarDataSet(entries1, "标准");
+        set1.setColor(getResources().getColor(R.color.blue_semi_transparent));
+        //set1.setFillColor(getResources().getColor(R.color.colorPrimaryDark));
         set1.setDrawFilled(true);
         set1.setFillAlpha(180);
         set1.setLineWidth(2f);
@@ -313,5 +380,61 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
             return Constants.hour[11];
         }
         return Constants.hour[8];
+    }
+
+    private void loadCupData(){
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        BmobQuery<User> userBmobQuery = new BmobQuery<>("_User");
+        userBmobQuery.findObjects(new FindListener<User>() {
+            @Override
+            public void done(List<User> list, BmobException e) {
+                if (null == e && null != list) {
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getUsername().equals(BmobUser.getCurrentUser(User.class).getUsername())) {
+                            BmobUser.getCurrentUser(User.class).setTeaRecord(list.get(i).getTeaRecord());
+                            BmobUser.getCurrentUser(User.class).setCupSum(list.get(i).getCupSum());
+                            BmobUser.getCurrentUser(User.class).setCupcategory(list.get(i).getCupcategory());
+                            BmobUser.getCurrentUser(User.class).setGender(list.get(i).getGender());
+                            BmobUser.getCurrentUser(User.class).setTestState(list.get(i).getTestState());
+                        }
+                        newData();
+                    }
+                }
+            }
+        });
+    }
+    private void newData(){
+        if (null != BmobUser.getCurrentUser(User.class)) {
+            setSanJiaoData();
+            cupSum.setText(BmobUser.getCurrentUser(User.class).getCupSum() + "杯");
+            cupCategory.setText(BmobUser.getCurrentUser(User.class).getCupcategory());
+            int intziyouji = Integer.parseInt(BmobUser.getCurrentUser(User.class).getCupSum()) + 90;
+            ziyoyji.setText(intziyouji + ".00%");
+            fushe.setText("1." + intziyouji + "2微西弗");
+            kaluli.setText("1." + intziyouji + "8卡路里");
+
+            series = new ValueLineSeries();
+            series.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            String[] split = BmobUser.getCurrentUser(User.class).getTeaRecord().split(";");
+            for (int j = 0; j < split.length; j++) {
+                String[] itemSplit = split[j].split(",");
+                series.addPoint(new ValueLinePoint(itemSplit[0], Float.parseFloat(itemSplit[1])));
+            }
+            mCubicValueLineChart.addSeries(series);
+            mCubicValueLineChart.startAnimation();
+            Toast.makeText(getContext(), "main", Toast.LENGTH_SHORT).show();
+        } else {
+            setNullSanJiao();
+            cupSum.setText("0杯");
+            cupCategory.setText("无");
+            ziyoyji.setText("0.00%");
+            fushe.setText("0微西弗");
+            kaluli.setText("0卡路里");
+        }
     }
 }

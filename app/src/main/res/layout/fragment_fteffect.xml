@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Cha.flourTea.FTEffectFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.tencent.liteav.demo.play.SuperPlayerView
+            android:id="@+id/flower_tea_pv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            >
+        </com.tencent.liteav.demo.play.SuperPlayerView>
+        <!--<com.tencent.rtmp.ui.TXCloudVideoView-->
+            <!--android:id="@+id/video_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:visibility="gone" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <View
+                    android:layout_marginLeft="@dimen/dp_3"
+                    android:layout_width="@dimen/dp_5"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginRight="@dimen/dp_3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主要功效"
+                    android:textSize="@dimen/dp_20"
+                    android:textColor="@color/colorPrimaryDark"/>
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/ft_effect_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

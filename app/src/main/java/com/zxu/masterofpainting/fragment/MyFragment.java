@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zxu.masterofpainting.MyApplication;
 import com.zxu.masterofpainting.R;
+import com.zxu.masterofpainting.activity.ChangeInfoActivity;
 import com.zxu.masterofpainting.activity.CollectionActivity;
 import com.zxu.masterofpainting.activity.LoginActivity;
 import com.zxu.masterofpainting.activity.RegisterActivity;
@@ -23,6 +24,8 @@ import com.zxu.masterofpainting.activity.UserInfoActivity;
 import com.zxu.masterofpainting.bean.User;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 
 
 /**
@@ -50,6 +53,9 @@ public class MyFragment extends Fragment implements View.OnClickListener{
         view.findViewById(R.id.register).setOnClickListener(this);
         view.findViewById(R.id.re_test).setOnClickListener(this);
         view.findViewById(R.id.my_info_view).setOnClickListener(this);
+        view.findViewById(R.id.change_info_view).setOnClickListener(this);
+        logintxt = (TextView) view.findViewById(R.id.login);
+        registertxt = (TextView) view.findViewById(R.id.register);
         simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.sdv_user_picture);
         if (BmobUser.getCurrentUser(User.class) != null) {
             simpleDraweeView.setImageURI("https://i8.meishichina.com/attachment/recipe/2018/08/10/2018081015339030872667138811491.jpg?x-oss-process=style/p800");
@@ -73,11 +79,16 @@ public class MyFragment extends Fragment implements View.OnClickListener{
             case R.id.my_info_view:
                 myInfo();
                 break;
+            case R.id.change_info_view:
+                changeInfo();
+                break;
             case R.id.re_test:
                 reTest();
                 break;
             case R.id.btn_sign_out:
                 //退出登录
+                logintxt.setVisibility(View.VISIBLE);
+                registertxt.setVisibility(View.VISIBLE);
                 if (BmobUser.getCurrentUser(User.class) != null) {
                     BmobUser.getCurrentUser(User.class).logOut();
                     simpleDraweeView.setImageResource(R.drawable.nologin);
@@ -89,6 +100,9 @@ public class MyFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    private void changeInfo(){
+        startActivity(new Intent(getContext(),ChangeInfoActivity.class));
+    }
     private void Login(){
         startActivity(new Intent(getContext(),LoginActivity.class));
     }
@@ -102,15 +116,7 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     }
 
     private void reTest(){
-        if (null != BmobUser.getCurrentUser(User.class)) {
-            if (BmobUser.getCurrentUser(User.class).getTestState().equals("0")) {
-                startActivity(new Intent(getContext(),TestingActivity.class));
-            } else {
-                Toast.makeText(getContext(), "您已经测试过了", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(getContext(), "您还没有登录呢", Toast.LENGTH_SHORT).show();
-        }
+        startActivity(new Intent(getContext(),TestingActivity.class));
     }
     @Override
     public void onStart() {
@@ -120,10 +126,16 @@ public class MyFragment extends Fragment implements View.OnClickListener{
         if (BmobUser.getCurrentUser(User.class) != null) {
             //Toast.makeText(getContext(), BmobUser.getCurrentUser(User.class).getUsername(), Toast.LENGTH_SHORT).show();
             simpleDraweeView.setImageURI("https://i8.meishichina.com/attachment/recipe/2018/08/10/2018081015339030872667138811491.jpg?x-oss-process=style/p800");
+            logintxt.setVisibility(View.INVISIBLE);
+            registertxt.setVisibility(View.INVISIBLE);
 
         } else {
             //Toast.makeText(getContext(), "用户空", Toast.LENGTH_SHORT).show();
             simpleDraweeView.setImageResource(R.drawable.nologin);
+            logintxt.setVisibility(View.VISIBLE);
+            registertxt.setVisibility(View.VISIBLE);
         }
     }
+
+
 }

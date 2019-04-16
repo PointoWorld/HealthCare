@@ -39,7 +39,7 @@ public class AdapterDate extends BaseAdapter {
         for (int i = 0; i < maxDay; i++) {
             days.add(i+1);
             //初始化日历数据
-            status.add(false);
+            status.add(true);
             //初始化日历签到状态
         }
     }

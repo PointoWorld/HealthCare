@@ -29,6 +29,11 @@ public class PhysiqueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_physique);
 
         initView();
+        loadData();
+    }
+
+    private void loadData() {
+        myPhysiqueTextView.setText(physiquestr);
     }
 
     private void initView() {
@@ -36,7 +41,6 @@ public class PhysiqueActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.toolbar_physique_title);
         myPhysiqueTextView = (TextView) findViewById(R.id.physique_name_text_view);
         physiquestr = getIntent().getStringExtra("physique");
-        myPhysiqueTextView.setText(physiquestr);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){

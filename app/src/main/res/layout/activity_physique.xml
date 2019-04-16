@@ -48,7 +48,8 @@
             <TextView
                 android:id="@+id/physique_name_text_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="平和质"/>
 
         </LinearLayout>
 
@@ -72,7 +73,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="         由于元气不足，以气息低弱、机体、脏腑功能状态低下为主要特征的一种体质状态。"
+            android:text="         平和体质的介绍：以体态适中、面色红润、精力充沛、脏腑功能状态强健壮实为主要特征的一种体质状态，称为“平和质”。"
             />
 
         <TextView
@@ -95,7 +96,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="         先天本弱、后天失养或病后气亏、年老气衰、过度疲劳造成。"
+            android:text="         平和体质的成因：先天的遗传条件良好，后天的饮食起居生活习惯适宜，即后天调养得当。"
             />
 
         <TextView
@@ -118,7 +119,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="         肌肉不健壮。气短懒言，肢体容易疲乏，易出汗，舌体胖大、边有齿横，目光少神，唇色少华，易头晕健忘等。性格内向，情绪不稳定，胆小不敢冒险。容易感冒，而且难好易复发。不耐受寒邪、风邪、暑邪。"/>
+            android:text="         平和体质的特征：
+         1.形体特征：体形匀称、健壮。
+         2.心理特征：性格随和开朗。
+         3.常见表现：面色、肤色润泽，头发稠密有光泽，目光有神，鼻色明润，嗅觉通利，味觉正常，唇色红润，精力充沛，不易疲劳，耐受寒热，睡眠安和，胃口良好，两便正常，舌色淡红，苔薄白，脉和有神。
+         4.发病倾向：平时较少生病。
+         5.对外界环境适应能力：对自然环境和社会环境适应能力较强。"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -163,13 +169,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="         生活起居：起居规律、避免熬夜或过度疲劳，要养成午休的习惯。
-            \n         精神调摄：乐观向上、多谈话沟通
-            \n         锻炼：避免剧烈运动，做柔缓运动，如散步、打太极拳等。
-            \n         饮食调养：山药、大枣、薯类等，少吃槟榔、空心菜、生萝卜等耗气的食物
-            \n         药膳推荐：山药粥，适量，可做早晚餐
-            \n         中成药：补中益气丸、参苓白术散等
-            \n         穴位调理：中脘、建里、气海、关元、足三里、肺腧、脾腧等，可艾灸。"/>
+            android:text="         对于平和质的人，养生保健宜饮食调理而不宜药补，因为平和之人阴阳平和，不需要药物纠正阴阳之偏正胜衰，如果用药物补益反而容易破坏阴阳平衡。对于饮食调理，首先要“谨和五味”。饮食应清淡，不宜有偏嗜。因五味偏嗜，会破坏身体的平衡状态。如过酸伤脾，过咸伤心，过甜伤肾，过辛伤肝，过苦伤肺。
+其次，在维持自身阴阳平衡的同时，平和质的人还应该注意自然界的四时阴阳变化，顺应此变化，以保持自身与自然界的整体阴阳平衡。再则，平和质的人还可酌量选食具有缓补阴阳作用的食物，以增强体质。
+这类食物有：韭菜、甘薯、南瓜、银杏、核桃、龙眼、莲子、鸡、牛、羊等。平和质的人春季阳气初生，宜食辛甘之品以发散，而不宜食酸收之味。宜食韭菜、香菜、豆豉、萝卜、枣、猪肉等。夏季心火当令，宜多食辛味助肺以制心，且饮食宜清淡而不宜食肥甘厚味。宜食菠菜、黄瓜、丝瓜、冬瓜、桃、李、绿豆、鸡肉、鸭肉等；秋季干燥易伤津液，宜食性润之品以生津液，而不宜食辛散之品。宜食银耳、杏、梨、白扁豆、蚕豆、鸭肉、猪肉等；冬季阳气衰微，故宜食温补之品以保护阳气，而不宜寒凉之品。宜食大白菜、板栗、枣、黑豆、刀豆、羊肉、狗肉等。"/>
 
         </LinearLayout>
     </ScrollView>

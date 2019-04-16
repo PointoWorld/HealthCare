@@ -3,25 +3,42 @@ package com.zxu.masterofpainting.bean;
 import cn.bmob.v3.BmobUser;
 
 public class User extends BmobUser {
-    private String nickName;
-    private String passWord;
     private String testState;
+    private String gender;
+    private String TeaRecord;
+    private String cupSum;
+    private String cupcategory;
 
-
-    public String getNickName() {
-        return nickName;
+    public String getCupSum() {
+        return cupSum;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setCupSum(String cupSum) {
+        this.cupSum = cupSum;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getCupcategory() {
+        return cupcategory;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setCupcategory(String cupcategory) {
+        this.cupcategory = cupcategory;
+    }
+
+    public String getTeaRecord() {
+        return TeaRecord;
+    }
+
+    public void setTeaRecord(String teaRecord) {
+        TeaRecord = teaRecord;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getTestState() {

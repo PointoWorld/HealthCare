@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -18,7 +16,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.zxu.masterofpainting.HealthPreserve.ChaCareActivity;
 import com.zxu.masterofpainting.HealthPreserve.ChineseMedicineActivity;
-import com.zxu.masterofpainting.HealthPreserve.HourActivity;
+import com.zxu.masterofpainting.HealthPreserve.HourDetailActivity;
 import com.zxu.masterofpainting.HealthPreserve.SolarTermsActivity;
 import com.zxu.masterofpainting.R;
 import com.zxu.masterofpainting.activity.MineralActivity;
@@ -141,7 +139,7 @@ public class InfoFragment extends Fragment implements BaseSliderView.OnSliderCli
                 startActivity(new Intent(getContext(),SolarTermsActivity.class) );
                 break;
             case R.id.hour_img:
-                startActivity(new Intent(getContext(),HourActivity.class));
+                startActivity(new Intent(getContext(),HourDetailActivity.class));
                 break;
             case R.id.tizhi_test:
                 if (null != BmobUser.getCurrentUser(User.class)) {

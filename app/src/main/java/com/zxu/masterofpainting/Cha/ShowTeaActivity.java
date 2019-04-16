@@ -55,7 +55,6 @@ public class ShowTeaActivity extends AppCompatActivity {
     }
 
     private void getIngredientsData(){
-        //Toast.makeText(this, ingredientsName, Toast.LENGTH_SHORT).show();
         Constants.teaName = ingredientsName;
         ingredientsBmobQuery = new BmobQuery<>("Tea");
         ingredientsBmobQuery.addWhereEqualTo("teaName", ingredientsName);
@@ -86,10 +85,6 @@ public class ShowTeaActivity extends AppCompatActivity {
     }
 
     private void setCoordinatorTabLayoutData(){
-//        mImageArray = new int[]{
-//                R.mipmap.longjing,
-//                R.mipmap.longjing,
-//                R.mipmap.longjing};
         mColorArray = new int[]{
                 android.R.color.holo_blue_light,
                 android.R.color.holo_green_dark,
@@ -127,10 +122,6 @@ public class ShowTeaActivity extends AppCompatActivity {
         mFragments.add(edibleEfficacyFragment);
         mFragments.add(nutritionalComponentsFragment);
         mFragments.add(suitableAvoidFragment);
-
-//        for (String title : mTitles) {
-//            mFragments.add(ShowDetailFragment.getInstance(title));
-//        }
     }
 
     private void initViewPager(){
@@ -143,9 +134,9 @@ public class ShowTeaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == android.R.id.home) {
-//            finish();
-//        }
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 }

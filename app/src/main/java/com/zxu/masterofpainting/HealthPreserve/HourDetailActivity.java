@@ -1,5 +1,6 @@
 package com.zxu.masterofpainting.HealthPreserve;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +8,10 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zxu.masterofpainting.Adapter.EfficacyAdapter;
 import com.zxu.masterofpainting.R;
+import com.zxu.masterofpainting.bean.EfficacyItem;
 import com.zxu.masterofpainting.bean.Hour;
-import com.zxu.masterofpainting.bean.SolarTerms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,22 +20,24 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
-public class HourActivity extends AppCompatActivity {
-    private List<SolarTerms> mSolarTermsList = new ArrayList<>();
-    private List<Hour> mHourList = new ArrayList<>();
+public class HourDetailActivity extends AppCompatActivity {
+    private List<EfficacyItem> mEfficacyItemList = new ArrayList<>();
     private RecyclerView hourRecyclerView;
     private SimpleDraweeView hourSimpleDraweeView;
+    private String hourName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hour);
         initView();
-        LoadData();
     }
     private void initView() {
         hourRecyclerView = (RecyclerView) findViewById(R.id.hour_recycler_view);
         hourSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.hour_simple_view);
+        Intent intent = getIntent();
+        hourName = intent.getStringExtra("hourName");
+        LoadData();
     }
     private void LoadData(){
         BmobQuery<Hour> hourTermsBmobQuery = new BmobQuery<>("Hour");
@@ -41,24 +45,32 @@ public class HourActivity extends AppCompatActivity {
             @Override
             public void done(List<Hour> list, BmobException e) {
                 if (e == null && list != null) {
-//                    for (int i = 0; i < list.size(); i++) {
-//                        mSolarTermsList.add(new SolarTerms(list.get(i).getHourName(),list.get(i).getImageUrl(), list.get(i).getIntr(),list.get(i).getHourName()));
-//                        mHourList.add(new Hour(list.get(i).getHourName(), list.get(i).getIntr(), list.get(i).getImageUrl()));
-//                    }
-//                    setAllData();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getHourName().equals(hourName)) {
+                            setAllData(list.get(i).getImageUrl(), list.get(i).getIntr());
+                            break;
+                        }
+                    }
                 } else {
-                    Toast.makeText(HourActivity.this, "呀，没找到数据", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HourDetailActivity.this, "呀，没找到数据", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void setAllData(){
-        hourSimpleDraweeView.setImageURI("http://5b0988e595225.cdn.sohucs.com/images/20180628/e3ce77a744994026bd97f0d6532aa6ff.jpeg");
+    private void setAllData(String imgUrl, String intr){
+        hourSimpleDraweeView.setImageURI(imgUrl);
+        String[] hourSplit = intr.split("#");
+        for (int i = 0; i < hourSplit.length; i++) {
+            String[] split = hourSplit[i].split("@");
+            if (split.length == 2) {
+                mEfficacyItemList.add(new EfficacyItem(split[0], split[1]));
+            }
+        }
         StaggeredGridLayoutManager layoutManager = new
-                StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+                StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         hourRecyclerView.setLayoutManager(layoutManager);
-        SolarTermsAdapter solarTermsAdapter = new SolarTermsAdapter(mSolarTermsList);
-        hourRecyclerView.setAdapter(solarTermsAdapter);
+        EfficacyAdapter efficacyAdapter = new EfficacyAdapter(mEfficacyItemList);
+        hourRecyclerView.setAdapter(efficacyAdapter);
     }
 }

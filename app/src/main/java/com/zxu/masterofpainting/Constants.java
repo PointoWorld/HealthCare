@@ -16,18 +16,26 @@ public class Constants {
     public static String teachongPao;
     public static String teasteps;
     public static String teaidentify;
+
+
+    public static String fteaEffect;
+    public static String fteaYuanLiao;
+    public static String fteasteps;
+    public static String fteaimgUrl;
+    public static String fteaName;
+    public static String fteaIntrVideo;
+    public static String fteaIntrtext;
+    public static String fteastepsVideo;
+    public static String fteastepstext;
+
     public static final String[] medicine = {"山药","人参","燕窝","阿胶","茯苓","党参","当归","蜂王浆","百合干","苦豆子","马鞭草","咖啡豆","甘草","川贝","桔梗","芭蕉叶","橘皮","决明子","苦参","鼠尾草","党参","太子参"};
-    public static final String[] labelNameMenu = {"症状","补养","美容养颜","保健调养","地域"};
+    public static final String[] labelNameMenu = {"症状","补养","美容养颜","保健调养"};
     public static final String[][] labelMenuContent = {
-    {"高血糖","高血压","高血脂","低血糖","胆固醇高","胃炎","腹泻","咳嗽","口腔溃疡","消化不良","便秘","肾亏","止咳","发烧","降火","缺钾","中暑","热感冒"
+    {"高血糖","高血压","高血脂","低血糖","胆固醇高","胃炎","腹泻","咳嗽","消化不良","便秘","肾亏","止咳","发烧","降火","缺钾","中暑","热感冒"
             ,"咳嗽有痰","扁桃体发炎"}
     ,{"解酒","脱发","养胃","补血","健脾","养肝","补气血","养肺","补脑","失眠","健忘","抑郁","补肾","瘦肚子","上火","抗疲劳","压力大","加快代谢"}
     ,{"美容","养颜","排毒","减肥","瘦身","瘦脸","瘦腿","抗皱","祛斑","美白","润肤","延缓衰老","护发","去黑眼圈","祛痘"}
     ,{"清热去火","疏肝理气","明目","降血压","降血糖","降血脂","增强免疫力"}
-    ,{"北京","天津","上海","重庆","河北","山西","辽宁","吉林","黑龙江","江苏","浙江"
-            ,"安徽","福建","江西","山东","河南","湖北","湖南","广东","海南","四川","贵州"
-            ,"云南","陕西","甘肃","青海","台湾省","内蒙古","广西","西藏"
-            ,"宁夏","新疆"}
     };
 
 //    public static final String[][] cardQuestion= {{"您容易疲乏吗？","您说话声音低弱无力吗？","您闷闷不乐、情绪低落吗？","您比一般人耐受不了寒冷（冬天的寒冷、夏天的空调等）吗？","您能适应外界自然和社会环境的变化吗？","您容易失眠吗？","您容易忘事（健忘）吗？"}

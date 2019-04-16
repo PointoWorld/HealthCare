@@ -105,7 +105,7 @@ public class TestingActivity extends AppCompatActivity implements SwipeStack.Swi
             }
         });
         Intent intent = new Intent(this,PhysiqueActivity.class);
-        intent.putExtra("physique", Constants.physiqueStr[1]);
+        intent.putExtra("physique", Constants.physiqueStr[0]);
         startActivity(intent);
         //Toast.makeText(getContext(), physiqueStr, Toast.LENGTH_SHORT).show();
     }

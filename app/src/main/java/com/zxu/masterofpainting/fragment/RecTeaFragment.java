@@ -13,8 +13,12 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zxu.masterofpainting.Cha.RecTeaAdapter;
 import com.zxu.masterofpainting.Cha.Tea;
+import com.zxu.masterofpainting.Cha.flourTea.FTAdapter;
+import com.zxu.masterofpainting.Cha.flourTea.flowertea;
 import com.zxu.masterofpainting.R;
+import com.zxu.masterofpainting.Recommend.SolarTeaAdapter;
 import com.zxu.masterofpainting.bean.Recommend;
+import com.zxu.masterofpainting.bean.SolarTea;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +28,11 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 public class RecTeaFragment extends Fragment {
-    private SimpleDraweeView simpleDraweeView;
     private String mTitle;
     private RecyclerView recyclerView;
-    private List<Tea> mTeaList  = new ArrayList<>();
+    private RecyclerView fTRecyclerView;
     private List<Recommend> mRecommendList = new ArrayList<>();
+    private List<SolarTea> mSolarTeaList = new ArrayList<>();
 
     public static RecTeaFragment getInstance(String title) {
         RecTeaFragment sf = new RecTeaFragment();
@@ -41,17 +45,17 @@ public class RecTeaFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_rec_tea, container, false);
         initView(view);
-        loadDat();
+        loadTeaDat();
+        loadFlowerTeaDat();
         return view;
     }
 
     private void initView(View view) {
-        simpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.tea_sd);
-        simpleDraweeView.setImageURI("https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=8b537a3b63380cd7e61ea5eb997fca09/72f082025aafa40f70d64b56ad64034f78f0192c.jpg");
         recyclerView = view.findViewById(R.id.rec_tea_rv);
+        fTRecyclerView = view.findViewById(R.id.flower_tea_rv);
     }
 
-    private void loadDat(){
+    private void loadTeaDat(){
         BmobQuery<Tea> teaBmobQuery = new BmobQuery<>("Tea");
         teaBmobQuery.findObjects(new FindListener<Tea>() {
             @Override
@@ -60,18 +64,39 @@ public class RecTeaFragment extends Fragment {
                     for (int i = 0; i < list.size(); i++) {
                         mRecommendList.add(new Recommend(list.get(i).getImgUrl(),list.get(i).getTeaName()));
                     }
-                    setData();
+                    setTeaData();
                 } else {
                     Toast.makeText(getContext(), "网络不好呦", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+    private void loadFlowerTeaDat(){
+        BmobQuery<flowertea> flowerteaBmobQuery = new BmobQuery<>("flowertea");
+        flowerteaBmobQuery.findObjects(new FindListener<flowertea>() {
+            @Override
+            public void done(List<flowertea> list, BmobException e) {
+                for (int i = 0; i < list.size(); i++) {
+                    String[] split = list.get(i).getGongXiao().split("@");
+                    if (split.length == 2) {
+                        mSolarTeaList.add(new SolarTea(list.get(i).getName(), list.get(i).getImgUrl(), split[1]));
+                    }
+                }
+                setFlowerTeaData();
+            }
+        });
+    }
 
-    private void setData(){
+    private void setTeaData(){
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         RecTeaAdapter recTeaAdapter = new RecTeaAdapter(mRecommendList);
         recyclerView.setAdapter(recTeaAdapter);
+    }
+    private void setFlowerTeaData(){
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        fTRecyclerView.setLayoutManager(layoutManager);
+        FTAdapter ftAdapter = new FTAdapter(mSolarTeaList);
+        fTRecyclerView.setAdapter(ftAdapter);
     }
 }
