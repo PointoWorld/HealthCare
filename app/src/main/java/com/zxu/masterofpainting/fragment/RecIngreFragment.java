@@ -27,7 +27,6 @@ import cn.bmob.v3.listener.FindListener;
 
 public class RecIngreFragment extends Fragment {
     private String mTitle;
-    private RecyclerView ingredientsRecyclerView;
     private RecyclerView collocationRecyclerView;
     private List<Recommend> mRecommendList = new ArrayList<>();
     private List<Collocation> mCollocationList = new ArrayList<>();
@@ -48,46 +47,23 @@ public class RecIngreFragment extends Fragment {
     }
 
     private void initView(View view) {
-        ingredientsRecyclerView = (RecyclerView) view.findViewById(R.id.rec_ingredients_rv);
         collocationRecyclerView = (RecyclerView) view.findViewById(R.id.rec_collocation_rv);
     }
 
     private void loadAllData(){
-        BmobQuery<Ingredient1> ingredientsBmobQuery = new BmobQuery<>("Ingredient1");
-        ingredientsBmobQuery.findObjects(new FindListener<Ingredient1>() {
-            @Override
-            public void done(List<Ingredient1> list, BmobException e) {
-                if (null == e && null != list) {
-                    int k = 0;
-                    for (int i = 0; i < list.size(); i++) {
-                        k++;
-                        if (k < 7) {
-                            mRecommendList.add(new Recommend(list.get(i).getImg(),list.get(i).getIngredientsName()));
-                        } else {
-                            k = 0;
-                            break;
-                        }
-                    }
-                    setIngredientsData();
-                } else {
-                    Toast.makeText(getContext(), "网络可能不好呦", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
         BmobQuery<Collocation> collocationBmobQuery = new BmobQuery<>("Collocation");
         collocationBmobQuery.findObjects(new FindListener<Collocation>() {
             @Override
             public void done(List<Collocation> list, BmobException e) {
                 if (null == e && null != list) {
-                    int k = 0;
+                    String s = "";
+                    for (int i = 0; i < 20; i++) {
+                        int i1 = (int) (1 + Math.random() * (115));
+                        s = s + i1 + ";";
+                    }
                     for (int i = 0; i < list.size(); i++) {
-                        k++;
-                        if (k < 7) {
+                        if (s.contains("" + i)) {
                             mCollocationList.add(list.get(i));
-                        } else {
-                            k = 0;
-                            break;
                         }
                     }
                     setCollocationData();
@@ -98,12 +74,12 @@ public class RecIngreFragment extends Fragment {
         });
     }
 
-    private void setIngredientsData(){
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
-        ingredientsRecyclerView.setLayoutManager(layoutManager);
-        ZuheIngAdapter recommendAdapter = new ZuheIngAdapter(mRecommendList);
-        ingredientsRecyclerView.setAdapter(recommendAdapter);
-    }
+//    private void setIngredientsData(){
+//        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+//        ingredientsRecyclerView.setLayoutManager(layoutManager);
+//        ZuheIngAdapter recommendAdapter = new ZuheIngAdapter(mRecommendList);
+//        ingredientsRecyclerView.setAdapter(recommendAdapter);
+//    }
     private void setCollocationData(){
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         collocationRecyclerView.setLayoutManager(layoutManager);

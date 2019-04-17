@@ -111,7 +111,7 @@ public class ClockActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void customLayout(View v) {
                         final TextView tvSubmit = (TextView) v.findViewById(R.id.tv_finish);
-                        final TextView tvAdd = (TextView) v.findViewById(R.id.tv_add);
+                        //final TextView tvAdd = (TextView) v.findViewById(R.id.tv_add);
                         ImageView ivCancel = (ImageView) v.findViewById(R.id.iv_cancel);
                         tvSubmit.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -128,13 +128,13 @@ public class ClockActivity extends AppCompatActivity implements View.OnClickList
                             }
                         });
 
-                        tvAdd.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                getCardData();
-                                pvCustomOptions.setPicker(cardItem);
-                            }
-                        });
+//                        tvAdd.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                getCardData();
+//                                pvCustomOptions.setPicker(cardItem);
+//                            }
+//                        });
 
                     }
                 })

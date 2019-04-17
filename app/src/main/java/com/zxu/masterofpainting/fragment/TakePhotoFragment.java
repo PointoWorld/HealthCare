@@ -74,7 +74,13 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
 
         View view = inflater.inflate(R.layout.fragment_takephoto,container,false);
         iniview(view);
-        loadCupData();
+        loadTeaData();
+
+        loadHourData();
+
+        loadSolarData(view);
+        loadTreeData();
+        loadZiYJData(view);
         return view;
     }
 
@@ -87,39 +93,68 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         ziyoyji = (TextView) view.findViewById(R.id.ziyoyji);
         fushe = (TextView) view.findViewById(R.id.fushe);
         kaluli = (TextView) view.findViewById(R.id.kaluli);
+        chart = view.findViewById(R.id.chart1);
+        marqueeView = (SimpleMarqueeView) view.findViewById(R.id.simpleMarqueeView);
+        solorMarqueeView = (SimpleMarqueeView) view.findViewById(R.id.solar_simpleMarqueeView);
         view.findViewById(R.id.tizhi_test_yangye).setOnClickListener(this);
         view.findViewById(R.id.daka_yangye).setOnClickListener(this);
         view.findViewById(R.id.time_detail).setOnClickListener(this);
         view.findViewById(R.id.solar_detail).setOnClickListener(this);
         view.findViewById(R.id.cup_see_cv).setOnClickListener(this);
-        getCurrentTime();
-        loadAllData(view);
+
     }
-    private void getCurrentTime(){
+    private void loadTeaData(){
+        if (null != BmobUser.getCurrentUser(User.class)) {
+            series = new ValueLineSeries();
+            series.setColor(getResources().getColor(R.color.colorPrimaryDark));
+
+            cupSum.setText(BmobUser.getCurrentUser(User.class).getCupSum() + "杯");
+            cupCategory.setText(BmobUser.getCurrentUser(User.class).getCupcategory());
+
+            String[] split = BmobUser.getCurrentUser(User.class).getTeaRecord().split(";");
+            for (int j = 0; j < split.length; j++) {
+                String[] itemSplit = split[j].split(",");
+                series.addPoint(new ValueLinePoint(itemSplit[0], Float.parseFloat(itemSplit[1])));
+            }
+            mCubicValueLineChart.addSeries(series);
+            mCubicValueLineChart.startAnimation();
+        } else {
+            series = new ValueLineSeries();
+            series.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            cupSum.setText("0杯");
+            cupCategory.setText("无");
+            mCubicValueLineChart.addSeries(series);
+            mCubicValueLineChart.startAnimation();
+        }
+
+    }
+    private void loadHourData(){
         int month = MyApplication.getInstance().getMonth();
         int hour = MyApplication.getInstance().getHour();
         String hourname = currentHourName(hour);
         hourName.setText(hourname);
         solarName.setText(Constants.solar[month]);
-    }
-    private void loadAllData(View view){
+
+        marqueeFactory = new SimpleMF(getContext());
         datas = Arrays.asList("下午不吃饭会心慌哦！","吃饱后短暂午睡可以让身体气血充足。");
+        marqueeFactory.setData(datas);
+        marqueeView.setMarqueeFactory(marqueeFactory);
+        marqueeView.startFlipping();
+    }
+    private void loadSolarData(View view){
+
         solarDatas = Arrays.asList("谷雨节气后降雨增多，空气中的湿度逐渐加大，要针对其气候特点进行调养！","适宜的膳食有：参蒸鳝段、菊花鳝鱼等，具有祛风湿、舒筋骨、温补气血的功效");
         //SimpleMarqueeView<T>，SimpleMF<T>：泛型T指定其填充的数据类型，比如String，Spanned等
-        marqueeView = (SimpleMarqueeView) view.findViewById(R.id.simpleMarqueeView);
-        solorMarqueeView = (SimpleMarqueeView) view.findViewById(R.id.solar_simpleMarqueeView);
-        marqueeFactory = new SimpleMF(getContext());
+//        marqueeFactory = new SimpleMF(getContext());
         solarMarqueeFactory = new SimpleMF(getContext());
-        marqueeFactory.setData(datas);
+//        marqueeFactory.setData(datas);
         solarMarqueeFactory.setData(solarDatas);
-        marqueeView.setMarqueeFactory(marqueeFactory);
+//        marqueeView.setMarqueeFactory(marqueeFactory);
         solorMarqueeView.setMarqueeFactory(solarMarqueeFactory);
-        marqueeView.startFlipping();
+//        marqueeView.startFlipping();
         solorMarqueeView.startFlipping();
-
-
-
-        chart = view.findViewById(R.id.chart1);
+    }
+    private void loadZiYJData(View view){
 
         chart.getDescription().setEnabled(false);
 
@@ -129,7 +164,7 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         chart.setWebColorInner(Color.LTGRAY);
         chart.setWebAlpha(100);
 
-        //setSanJiaoData();
+        setSanJiaoData();
 
         chart.animateXY(1400, 1400, Easing.EaseInOutQuad);
 
@@ -166,46 +201,17 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         l.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         //teaRecord();
     }
-    private void teaRecord(){
-        series = new ValueLineSeries();
-        series.setColor(getResources().getColor(R.color.colorPrimaryDark));
-        BmobQuery<User> userBmobQuery = new BmobQuery<>("_User");
-        userBmobQuery.findObjects(new FindListener<User>() {
-            @Override
-            public void done(List<User> list, BmobException e) {
-                if (null == e && null != list) {
-                    for (int i = 0; i < list.size(); i++) {
-                        //Toast.makeText(getContext(), "haha", Toast.LENGTH_SHORT).show();
-                        if (list.get(i).getUsername().equals(BmobUser.getCurrentUser(User.class).getUsername())) {
-                            Toast.makeText(getContext(), "haha", Toast.LENGTH_SHORT).show();
-                            cupSum.setText(list.get(i).getCupSum() + "杯");
-                            cupCategory.setText(list.get(i).getCupcategory());
-                            String[] split = list.get(i).getTeaRecord().split(";");
-                            for (int j = 0; j < split.length; j++) {
-                                String[] itemSplit = split[j].split(",");
-                                series.addPoint(new ValueLinePoint(itemSplit[0], Float.parseFloat(itemSplit[1])));
-                            }
-                            mCubicValueLineChart.addSeries(series);
-                            mCubicValueLineChart.startAnimation();
-                        }
-                    }
-                } else {
-                    cupSum.setText("0杯");
-                    cupCategory.setText("无");
-//                    series.addPoint(new ValueLinePoint("1号", 2.5f));
-//                    series.addPoint(new ValueLinePoint("2号", 1.5f));
-//                    series.addPoint(new ValueLinePoint("3号", 2.5f));
-//                    series.addPoint(new ValueLinePoint("4号", 1.5f));
-//                    series.addPoint(new ValueLinePoint("5号", 2.5f));
-//                    series.addPoint(new ValueLinePoint("6号", 3.5f));
-//                    series.addPoint(new ValueLinePoint("7号", 0.5f));
-//                    series.addPoint(new ValueLinePoint("8号", 1.5f));
-                    mCubicValueLineChart.addSeries(series);
-                    mCubicValueLineChart.startAnimation();
-                }
-            }
-        });
-
+    private void loadTreeData(){
+        if (null != BmobUser.getCurrentUser(User.class)) {
+            int intziyouji = Integer.parseInt(BmobUser.getCurrentUser(User.class).getCupSum()) + 90;
+            ziyoyji.setText(intziyouji + ".00%");
+            fushe.setText("1." + intziyouji + "2微西弗");
+            kaluli.setText("1." + intziyouji + "8卡路里");
+        } else {
+            ziyoyji.setText("0.00%");
+            fushe.setText(0 + "微西弗");
+            kaluli.setText(0 + "卡路里");
+        }
     }
     @Override
     public void onClick(View v) {
@@ -269,6 +275,7 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
     private void setSanJiaoData() {
         ArrayList<RadarEntry> entries1 = new ArrayList<>();
         ArrayList<RadarEntry> entries2 = new ArrayList<>();
+        if (null != BmobUser.getCurrentUser(User.class)) {
 
             entries1.add(new RadarEntry(50));
             entries1.add(new RadarEntry(43));
@@ -277,6 +284,15 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
             entries2.add(new RadarEntry(30));
             entries2.add(new RadarEntry(30));
             entries2.add(new RadarEntry(20));
+        } else {
+            entries1.add(new RadarEntry(50));
+            entries1.add(new RadarEntry(43));
+            entries1.add(new RadarEntry(60));
+
+            entries2.add(new RadarEntry(0));
+            entries2.add(new RadarEntry(0));
+            entries2.add(new RadarEntry(0));
+        }
 
 
         RadarDataSet set1 = new RadarDataSet(entries1, "标准");
@@ -382,34 +398,40 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
         return Constants.hour[8];
     }
 
-    private void loadCupData(){
-
-    }
-
     @Override
     public void onStart() {
         super.onStart();
-        BmobQuery<User> userBmobQuery = new BmobQuery<>("_User");
-        userBmobQuery.findObjects(new FindListener<User>() {
-            @Override
-            public void done(List<User> list, BmobException e) {
-                if (null == e && null != list) {
-                    for (int i = 0; i < list.size(); i++) {
-                        if (list.get(i).getUsername().equals(BmobUser.getCurrentUser(User.class).getUsername())) {
-                            BmobUser.getCurrentUser(User.class).setTeaRecord(list.get(i).getTeaRecord());
-                            BmobUser.getCurrentUser(User.class).setCupSum(list.get(i).getCupSum());
-                            BmobUser.getCurrentUser(User.class).setCupcategory(list.get(i).getCupcategory());
-                            BmobUser.getCurrentUser(User.class).setGender(list.get(i).getGender());
-                            BmobUser.getCurrentUser(User.class).setTestState(list.get(i).getTestState());
+        if (null != BmobUser.getCurrentUser(User.class)) {
+            BmobQuery<User> userBmobQuery = new BmobQuery<>("_User");
+            userBmobQuery.findObjects(new FindListener<User>() {
+                @Override
+                public void done(List<User> list, BmobException e) {
+                    if (null == e && null != list) {
+                        for (int i = 0; i < list.size(); i++) {
+                            if (list.get(i).getUsername().equals(BmobUser.getCurrentUser(User.class).getUsername())) {
+                                BmobUser.getCurrentUser(User.class).setTeaRecord(list.get(i).getTeaRecord());
+                                BmobUser.getCurrentUser(User.class).setCupSum(list.get(i).getCupSum());
+                                BmobUser.getCurrentUser(User.class).setCupcategory(list.get(i).getCupcategory());
+                                BmobUser.getCurrentUser(User.class).setGender(list.get(i).getGender());
+                                BmobUser.getCurrentUser(User.class).setTestState(list.get(i).getTestState());
+                            }
+                            newData();
                         }
-                        newData();
                     }
                 }
-            }
-        });
+            });
+        } else {
+            //User is null
+            setNullSanJiao();
+            cupSum.setText("0杯");
+            cupCategory.setText("无");
+            ziyoyji.setText("0.00%");
+            fushe.setText("0微西弗");
+            kaluli.setText("0卡路里");
+        }
     }
     private void newData(){
-        if (null != BmobUser.getCurrentUser(User.class)) {
+
             setSanJiaoData();
             cupSum.setText(BmobUser.getCurrentUser(User.class).getCupSum() + "杯");
             cupCategory.setText(BmobUser.getCurrentUser(User.class).getCupcategory());
@@ -428,13 +450,5 @@ public class TakePhotoFragment extends Fragment implements View.OnClickListener{
             mCubicValueLineChart.addSeries(series);
             mCubicValueLineChart.startAnimation();
             Toast.makeText(getContext(), "main", Toast.LENGTH_SHORT).show();
-        } else {
-            setNullSanJiao();
-            cupSum.setText("0杯");
-            cupCategory.setText("无");
-            ziyoyji.setText("0.00%");
-            fushe.setText("0微西弗");
-            kaluli.setText("0卡路里");
-        }
     }
 }
